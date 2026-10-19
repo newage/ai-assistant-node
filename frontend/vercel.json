@@ -1,5 +1,8 @@
 {
   "functions": {
-    "src/index.js": { "includeFiles": "public/**" }
-  }
+    "src/index.js": {
+      "includeFiles": "public/**"
+    }
+  },
+  "installCommand": "npx --yes npm@12.2.0 ci"
 }
