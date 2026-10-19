@@ -642,6 +642,12 @@ section.block{position:relative;z-index:2;padding-top:88px;padding-bottom:40px}
     pl: ['Kluczowe osiągnięcia', 'Stos technologiczny', 'Doświadczenie z AI', 'Certyfikaty'],
     uk: ['Ключові досягнення', 'Технологічний стек', 'Досвід з AI', 'Сертифікати']
   };
+  /* Expanded questions sent to the chat when a chip is clicked (same order as CHIPS) */
+  const CHIP_QUESTIONS = {
+    en: ['What are his key achievements?', 'What is his tech stack?', 'What is his experience with AI?', 'What are his certificates?'],
+    pl: ['Jakie są jego kluczowe osiągnięcia?', 'Jaki jest jego stos technologiczny?', 'Jakie ma doświadczenie z AI?', 'Jakie ma certyfikaty?'],
+    uk: ['Які його ключові досягнення?', 'Який його технологічний стек?', 'Який в нього досвід з AI?', 'Які його сертифікати?']
+  };
   const FALLBACKS = {
     en: FALLBACK_EN,
     pl: 'Działam w trybie demo, więc mogę odpowiadać tylko o osiągnięciach Vadyma, stosie technologicznym, doświadczeniu z AI, certyfikatach, historii kariery i kontaktach. Wypróbuj jedną z tych opcji!',
@@ -699,12 +705,12 @@ section.block{position:relative;z-index:2;padding-top:88px;padding-bottom:40px}
   function addChips() {
     const wrap = document.createElement('div');
     wrap.className = 'chips';
-    CHIPS.forEach((label) => {
+    CHIPS.forEach((label, n) => {
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'chip';
       b.textContent = label;
-      b.addEventListener('click', () => { wrap.remove(); send(label); });
+      b.addEventListener('click', () => { wrap.remove(); send(CHIP_QUESTIONS[lang][n]); });
       wrap.appendChild(b);
     });
     body.appendChild(wrap);
