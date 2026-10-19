@@ -1,4 +1,5 @@
 import express from 'express';
+import { fileURLToPath } from 'node:url';
 import config from './config.js';
 import { createLog } from './log.js';
 import { text } from './messages.js';
@@ -14,6 +15,7 @@ export function createApp(deps = {}) {
   const answer = deps.answer ?? createClaude(config);
 
   const app = express();
+  app.use(express.static(fileURLToPath(new URL('../public', import.meta.url))));
   const parseJson = express.json();
 
   // A body parse error is kept for later: the call limit is checked before the body is judged.
