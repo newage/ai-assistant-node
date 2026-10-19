@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vadym Leontiev — Senior Backend Engineer</title>
+<meta name="description" content="Senior Backend Engineer with 20+ years of experience: PHP, microservices, Kafka, DDD and AI-driven engineering workflows. Ask my AI assistant about my experience.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --bg:#0E0B1F;
+  --text:#E4E3EE;
+  --text-strong:#F2F1F8;
+  --muted:#A3A1B8;
+  --muted-2:#8E8CA3;
+  --teal:#3FE0C5;
+  --blue:#4C8DFF;
+  --violet:#8B6CFF;
+  --btn-bg:#E8E6F5;
+  --btn-text:#1A1730;
+  --line:rgba(255,255,255,.08);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:#C9C6E8;text-decoration:none}
+a:hover{color:#fff}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+.nav{position:relative;z-index:3;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding-top:24px;padding-bottom:24px}
+.brand{font-weight:600;font-size:18px;letter-spacing:-.01em;color:var(--text-strong)}
+.nav-links{display:flex;flex-wrap:wrap;gap:28px;font-size:15px}
+.lang{height:40px;padding:0 12px;border-radius:10px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.04);color:var(--text-strong);font-family:inherit;font-size:14px;cursor:pointer}
+.lang:hover{background:rgba(255,255,255,.1)}
+.lang:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.lang option{background:#16122E;color:var(--text-strong)}
+
+/* HERO */
+.hero{position:relative;height:860px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 24px 120px;margin-top:-80px}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center;max-width:960px}
+.hero-kicker{font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.hero h1{margin:0;font-size:clamp(40px,6vw,78px);line-height:1.04;font-weight:400;letter-spacing:-.035em;color:var(--text)}
+.hero p{margin:0;max-width:640px;font-size:18px;line-height:1.55;color:var(--muted)}
+.cta-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:12px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.cta-note{font-size:13px;color:var(--muted-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 30px;border:1px solid rgba(255,255,255,.6);border-radius:var(--radius);background:var(--btn-bg);color:var(--btn-text);font:500 16px/1 inherit;font-family:inherit;cursor:pointer;box-shadow:0 0 0 1px rgba(255,255,255,.15),0 10px 30px rgba(10,6,30,.6);transition:box-shadow .25s,background .25s}
+.btn:hover{background:#fff;color:var(--btn-text);box-shadow:0 0 0 1px rgba(255,255,255,.5),0 0 36px rgba(139,108,255,.55)}
+.btn-ghost{background:rgba(255,255,255,.04);color:var(--text-strong);border-color:rgba(255,255,255,.22);box-shadow:none}
+.btn-ghost:hover{background:rgba(255,255,255,.1);color:#fff;box-shadow:none}
+.btn:focus-visible,.chip:focus-visible,.icon-btn:focus-visible,.chat-fab:focus-visible,a:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.scroll-hint{position:absolute;z-index:2;bottom:0;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
+.scroll-hint .stem{width:1px;height:80px;background:linear-gradient(rgba(14,11,31,0),#C9C6E8)}
+.scroll-hint .dot{width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 12px 3px rgba(201,198,232,.8)}
+
+.flow{stroke-dasharray:70 1100;animation:flow 7s linear infinite}
+.flow.d2{animation-duration:9s;animation-delay:-3s}
+.flow.d3{animation-duration:11s;animation-delay:-6s}
+@keyframes flow{from{stroke-dashoffset:1170}to{stroke-dashoffset:0}}
+.pulse{animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* SECTIONS */
+section.block{position:relative;z-index:2;padding-top:88px;padding-bottom:40px}
+.section-head{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;margin-bottom:56px}
+.eyebrow{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.section-head h2,.final h2{margin:0;font-weight:400;letter-spacing:-.03em;color:var(--text)}
+.section-head h2{font-size:clamp(32px,4vw,48px)}
+.section-head p{margin:0;max-width:640px;font-size:17px;line-height:1.55;color:var(--muted)}
+
+.card{display:flex;flex-direction:column;gap:14px;padding:28px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.card h3{margin:0;font-size:21px;font-weight:500;color:var(--text-strong)}
+.card p{margin:0;font-size:15.5px;line-height:1.55;color:var(--muted)}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:start}
+.about-text p{margin:0 0 18px;font-size:18px;line-height:1.65;color:var(--muted)}
+.about-text p:first-child{color:var(--text);font-size:20px}
+.stats{display:grid;gap:16px}
+.stat{padding:24px 28px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.stat b{display:block;font-size:44px;font-weight:300;letter-spacing:-.04em;line-height:1;color:var(--teal)}
+.stat span{display:block;margin-top:8px;font-size:15px;color:var(--muted)}
+.stat:nth-child(2) b{color:#5FB4FF}
+.stat:nth-child(3) b{color:#A88CFF}
+
+/* EXPERIENCE */
+.grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.job{display:flex;flex-direction:column;gap:18px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.job.visible{opacity:1;transform:none}
+.rail{display:flex;align-items:center;gap:10px}
+.rail-dot{width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 14px 2px var(--c)}
+.rail-line{flex:1;height:1px;background:rgba(201,198,232,.18)}
+.job .card{flex:1}
+.period{font-size:15px;letter-spacing:.04em;color:var(--c)}
+.role{font-size:14px;color:var(--muted-2)}
+.job ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.job li{position:relative;padding-left:16px;font-size:15px;line-height:1.5;color:var(--muted)}
+.job li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--c)}
+.proj-links{display:flex;flex-wrap:wrap;gap:14px;font-size:14px}
+
+/* SKILLS */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.skills .card{gap:16px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{padding:6px 12px;border-radius:999px;font-size:13.5px;color:#DCD6FF;border:1px solid rgba(139,108,255,.35);background:rgba(139,108,255,.08)}
+.tag.dim{color:var(--muted);border-color:var(--line);background:rgba(255,255,255,.03)}
+
+/* AI */
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.ai-callout{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding:28px 32px;border-radius:20px;border:1px solid rgba(139,108,255,.35);background:radial-gradient(ellipse at 0% 100%,rgba(139,108,255,.25),rgba(14,11,31,0) 70%)}
+.ai-callout p{margin:0;max-width:640px;font-size:17px;line-height:1.55;color:var(--text)}
+.ai-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--teal);background:rgba(63,224,197,.1);border:1px solid rgba(63,224,197,.3)}
+
+/* EDU */
+.edu{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.card ul.plain{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:15.5px;line-height:1.5;color:var(--muted)}
+.card .sub{font-size:14px;color:var(--muted-2)}
+
+/* FINAL */
+.final{position:relative;z-index:2;padding-top:64px;padding-bottom:120px}
+.final-box{display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center;padding:64px 24px;border-radius:24px;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 120%,rgba(139,108,255,.28),rgba(14,11,31,0) 65%)}
+.final h2{font-size:clamp(28px,3.4vw,42px)}
+.final p{margin:0;max-width:520px;font-size:17px;line-height:1.55;color:var(--muted)}
+.contacts{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;font-size:16px}
+.footer{margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted-2)}
+
+/* CHAT */
+.chat-fab{position:fixed;z-index:11;right:24px;bottom:24px;width:60px;height:60px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(255,255,255,.6);background:var(--btn-bg);color:var(--btn-text);cursor:pointer;box-shadow:0 0 30px rgba(139,108,255,.55)}
+.chat{position:fixed;z-index:10;right:24px;bottom:100px;width:min(400px,calc(100% - 48px));display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:rgba(22,18,46,.94);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 60px rgba(0,0,0,.55);opacity:0;transform:translateY(12px) scale(.98);pointer-events:none;visibility:hidden;transition:opacity .2s ease,transform .2s ease,visibility .2s}
+.chat.open{opacity:1;transform:none;pointer-events:auto;visibility:visible}
+.chat-head{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.status-dot{width:9px;height:9px;border-radius:50%;background:var(--teal)}
+.chat-title{flex:1}
+.chat-title strong{display:block;font-size:15px;font-weight:500;color:var(--text-strong)}
+.chat-title span{font-size:12px;color:var(--muted-2)}
+.icon-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:0;border-radius:10px;background:transparent;color:#C9C6E8;cursor:pointer}
+.icon-btn:hover{background:rgba(255,255,255,.06)}
+.chat-body{display:flex;flex-direction:column;gap:10px;padding:18px;max-height:360px;overflow-y:auto}
+.msg{max-width:88%;padding:11px 14px;border-radius:14px;font-size:14.5px;line-height:1.5;color:#ECEBF5;white-space:pre-wrap;word-wrap:break-word}
+.msg.bot{align-self:flex-start;background:rgba(255,255,255,.07)}
+.msg.user{align-self:flex-end;background:rgba(139,108,255,.35)}
+.msg.typing{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.chip{min-height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(139,108,255,.5);background:rgba(139,108,255,.1);color:#DCD6FF;font-family:inherit;font-size:13.5px;cursor:pointer}
+.chip:hover{background:rgba(139,108,255,.22)}
+.chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.chat-form input{flex:1;min-width:0;height:44px;padding:0 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text-strong);font-family:inherit;font-size:14.5px}
+.chat-form input:focus{outline:none;border-color:var(--violet)}
+.chat-form button{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:0;border-radius:10px;background:var(--btn-bg);color:var(--btn-text);cursor:pointer}
+
+@media (max-width:860px){
+  .about{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .hero{height:780px;padding-bottom:110px}
+  .hero p{font-size:16px}
+  .btn{width:100%}
+  .cta-wrap,.cta-row{width:100%}
+  .nav-links{gap:18px;font-size:14px}
+  .chat{right:12px;left:12px;width:auto;bottom:96px}
+  .ai-callout{padding:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  .flow,.pulse{animation:none}
+  .job{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="container nav">
+  <div class="brand">Vadym Leontiev</div>
+  <nav class="nav-links" aria-label="Main navigation">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#ai">AI</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <select class="lang" id="lang" aria-label="Language">
+    <option value="en">EN</option>
+    <option value="pl">PL</option>
+    <option value="uk">UK</option>
+  </select>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="hero-bg" aria-hidden="true" viewBox="0 0 1440 860" preserveAspectRatio="xMidYMin slice">
+      <defs>
+        <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff" stop-opacity="1"/>
+          <stop offset="0.55" stop-color="#fff" stop-opacity="0.75"/>
+          <stop offset="0.8" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+        <mask id="m"><rect width="1440" height="860" fill="url(#fade)"/></mask>
+        <radialGradient id="glow" cx="0.5" cy="1" r="0.6">
+          <stop offset="0" stop-color="#8B6CFF" stop-opacity="0.45"/>
+          <stop offset="0.5" stop-color="#4C3BAA" stop-opacity="0.12"/>
+          <stop offset="1" stop-color="#0E0B1F" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect x="220" y="560" width="1000" height="300" fill="url(#glow)"/>
+      <g mask="url(#m)" fill="none" stroke-linecap="round">
+        <g stroke-width="1.2" opacity="0.55">
+          <path d="M140 0 C140 220 517 380 650 600" stroke="#4C8DFF"/>
+          <path d="M230 0 C230 220 548 380 661 600" stroke="#8B6CFF"/>
+          <path d="M310 0 C310 220 576 380 671 600" stroke="#3FE0C5"/>
+          <path d="M380 0 C380 220 601 380 679 600" stroke="#4C8DFF"/>
+          <path d="M450 0 C450 220 625 380 688 600" stroke="#FFFFFF" stroke-dasharray="1 6"/>
+          <path d="M510 0 C510 220 646 380 695 600" stroke="#3FE0C5"/>
+          <path d="M560 0 C560 220 664 380 701 600" stroke="#8B6CFF" stroke-dasharray="1 5"/>
+          <path d="M610 0 C610 220 681 380 707 600" stroke="#4C8DFF"/>
+          <path d="M650 0 C650 220 695 380 712 600" stroke="#FFFFFF"/>
+          <path d="M690 0 C690 220 709 380 716 600" stroke="#3FE0C5" stroke-dasharray="1 6"/>
+          <path d="M720 0 C720 220 720 380 720 600" stroke="#8B6CFF"/>
+          <path d="M750 0 C750 220 730 380 724 600" stroke="#4C8DFF"/>
+          <path d="M790 0 C790 220 744 380 728 600" stroke="#FFFFFF" stroke-dasharray="1 5"/>
+          <path d="M830 0 C830 220 758 380 733 600" stroke="#3FE0C5"/>
+          <path d="M880 0 C880 220 776 380 739 600" stroke="#8B6CFF"/>
+          <path d="M930 0 C930 220 793 380 745 600" stroke="#4C8DFF" stroke-dasharray="1 6"/>
+          <path d="M990 0 C990 220 814 380 752 600" stroke="#3FE0C5"/>
+          <path d="M1060 0 C1060 220 839 380 761 600" stroke="#FFFFFF"/>
+          <path d="M1130 0 C1130 220 863 380 769 600" stroke="#8B6CFF"/>
+          <path d="M1210 0 C1210 220 891 380 779 600" stroke="#4C8DFF" stroke-dasharray="1 6"/>
+          <path d="M1300 0 C1300 220 923 380 790 600" stroke="#3FE0C5"/>
+        </g>
+        <g stroke-width="2.4">
+          <path class="flow" d="M310 0 C310 220 576 380 671 600" stroke="#3FE0C5"/>
+          <path class="flow d2" d="M610 0 C610 220 681 380 707 600" stroke="#4C8DFF"/>
+          <path class="flow d3" d="M880 0 C880 220 776 380 739 600" stroke="#8B6CFF"/>
+          <path class="flow d2" d="M1060 0 C1060 220 839 380 761 600" stroke="#FFFFFF"/>
+          <path class="flow" d="M990 0 C990 220 814 380 752 600" stroke="#3FE0C5"/>
+          <path class="flow d3" d="M230 0 C230 220 548 380 661 600" stroke="#8B6CFF"/>
+          <path class="flow d3" d="M750 0 C750 220 730 380 724 600" stroke="#3FE0C5"/>
+        </g>
+      </g>
+    </svg>
+
+    <div class="hero-content">
+      <div class="hero-kicker">Vadym Leontiev · Warsaw, Poland</div>
+      <h1>Senior Backend Engineer building scalable systems</h1>
+      <p>20+ years in software development, 13 of them leading backend architecture at Englishdom. Microservices, event-driven systems, payments, and AI-driven engineering workflows.</p>
+      <div class="cta-wrap">
+        <div class="cta-row">
+          <button class="btn" type="button" data-open-chat>
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.7 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
+            Ask my AI assistant
+          </button>
+          <a class="btn btn-ghost" href="https://github.com/newage" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="cta-note">Ask about my experience, skills and projects · Answers in seconds</div>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <div class="stem"></div>
+      <div class="dot pulse"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="container block">
+    <div class="section-head">
+      <div class="eyebrow">About</div>
+      <h2>Backend, done properly</h2>
+    </div>
+    <div class="about">
+      <div class="about-text">
+        <p>I specialize in scalable microservice architectures built with PHP 8+, Swoole, Apache Kafka and Domain-Driven Design, with Spec-Driven Development as the working method.</p>
+        <p>My track record covers high-performance payment engines, asynchronous CRM integrations and event-driven systems. I decoupled monolithic legacy code into clean RESTful microservices and launched the full backend of a product from scratch.</p>
+        <p>Today I also use modern AI engineering tools and custom agent skills to build AI-driven workflows and speed up software delivery.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>20+</b><span>years of software development</span></div>
+        <div class="stat"><b>13</b><span>years driving backend architecture at Englishdom</span></div>
+        <div class="stat"><b>3</b><span>Zend certifications</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="container block">
+    <div class="section-head">
+      <div class="eyebrow">Experience</div>
+      <h2>Where I've worked</h2>
+      <p>From web portals for international clients to payments and event-driven platforms.</p>
+    </div>
+    <ol class="grid">
+      <li class="job" style="--c:#3FE0C5">
+        <div class="rail" aria-hidden="true"><div class="rail-dot"></div><div class="rail-line"></div></div>
+        <div class="card">
+          <div class="period">2013 – 2026</div>
+          <h3>Englishdom</h3>
+          <div class="role">Senior PHP Developer / Lead Backend Architect · Warsaw (remote, HQ Ukraine)</div>
+          <ul>
+            <li>Standalone payments and subscriptions service: secure processing, auto-renewals, recurring billing.</li>
+            <li>High-throughput async microservice (PHP + Swoole) for real-time two-way sync with Creatio CRM.</li>
+            <li>Event-driven messaging over Apache Kafka with a shared library for domain events.</li>
+            <li>Decoupled a legacy monolith into RESTful microservices (Mezzio, Event Sourcing, DDD).</li>
+            <li>Built the entire backend of AllRight Pro on Symfony and Doctrine.</li>
+            <li>Spec-Driven Development and BDD/TDD standards for stable, well-tested systems.</li>
+          </ul>
+          <div class="proj-links">
+            <a href="https://www.englishdom.com" target="_blank" rel="noopener">englishdom.com</a>
+            <a href="https://allrightpro.com" target="_blank" rel="noopener">allrightpro.com</a>
+          </div>
+        </div>
+      </li>
+      <li class="job" style="--c:#5FB4FF">
+        <div class="rail" aria-hidden="true"><div class="rail-dot"></div><div class="rail-line"></div></div>
+        <div class="card">
+          <div class="period">2011 – 2013</div>
+          <h3>Everlution</h3>
+          <div class="role">Senior PHP Developer / Team Leader Assistant · Dnipropetrovsk, Ukraine</div>
+          <ul>
+            <li>Led a team of three: two backend developers and one QA.</li>
+            <li>Architected web applications and microservices on Zend Framework and Mezzio.</li>
+            <li>Standardized dependency management and coding practices across projects.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="job" style="--c:#8FA0FF">
+        <div class="rail" aria-hidden="true"><div class="rail-dot"></div><div class="rail-line"></div></div>
+        <div class="card">
+          <div class="period">2009 – 2011</div>
+          <h3>Exigen</h3>
+          <div class="role">Senior PHP Developer · Dnipropetrovsk, Ukraine</div>
+          <ul>
+            <li>Built an internal enterprise knowledge management system based on ontologies.</li>
+            <li>Introduced automated testing, CI pipelines and version control best practices.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="job" style="--c:#A88CFF">
+        <div class="rail" aria-hidden="true"><div class="rail-dot"></div><div class="rail-line"></div></div>
+        <div class="card">
+          <div class="period">2008 – 2009</div>
+          <h3>ProxyStep</h3>
+          <div class="role">Senior PHP Developer · Dnipropetrovsk, Ukraine</div>
+          <ul>
+            <li>Developed web portals and applications for international clients, including a French insurance provider.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="container block">
+    <div class="section-head">
+      <div class="eyebrow">Skills</div>
+      <h2>Tools and techniques</h2>
+    </div>
+    <div class="skills">
+      <div class="card">
+        <h3>Programming &amp; core</h3>
+        <div class="tags"><span class="tag">PHP 8.x</span><span class="tag">Swoole (async PHP)</span><span class="tag">REST APIs</span><span class="tag">gRPC</span><span class="tag">Spec-Driven Development</span></div>
+      </div>
+      <div class="card">
+        <h3>Architecture</h3>
+        <div class="tags"><span class="tag">Microservices</span><span class="tag">Domain-Driven Design</span><span class="tag">Event-Driven Architecture</span></div>
+      </div>
+      <div class="card">
+        <h3>Messaging &amp; streaming</h3>
+        <div class="tags"><span class="tag">Apache Kafka</span><span class="tag">RabbitMQ</span><span class="tag">WebSockets</span></div>
+      </div>
+      <div class="card">
+        <h3>Frameworks</h3>
+        <div class="tags"><span class="tag">Mezzio</span><span class="tag">Laminas</span><span class="tag">Symfony (API Platform)</span></div>
+      </div>
+      <div class="card">
+        <h3>Data</h3>
+        <div class="tags"><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">MongoDB</span></div>
+      </div>
+      <div class="card">
+        <h3>DevOps &amp; tooling</h3>
+        <div class="tags"><span class="tag">Docker</span><span class="tag">Git (GitHub / GitLab)</span><span class="tag">GitLab CI</span><span class="tag">Linux (Ubuntu / Debian)</span></div>
+      </div>
+      <div class="card">
+        <h3>Testing &amp; quality</h3>
+        <div class="tags"><span class="tag">TDD</span><span class="tag">BDD</span><span class="tag">PHPUnit</span><span class="tag">Behat</span><span class="tag">Codeception</span><span class="tag">PhpSpec</span></div>
+      </div>
+      <div class="card">
+        <h3>Also working with</h3>
+        <div class="tags"><span class="tag dim">Python (basic / scripting)</span><span class="tag dim">React.js (basic)</span><span class="tag dim">GraphQL (basic)</span><span class="tag dim">Node.js (basic)</span></div>
+      </div>
+      <div class="card">
+        <h3>Actively learning</h3>
+        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">LangChain</span><span class="tag">Node.js</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI -->
+  <section id="ai" class="container block">
+    <div class="section-head">
+      <div class="eyebrow">AI</div>
+      <h2>AI in my engineering work</h2>
+      <p>I treat AI as part of the engineering toolchain: it speeds up delivery when it is guided by clear specifications and good tests.</p>
+    </div>
+    <div class="ai-grid">
+      <div class="card">
+        <div class="ai-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12"/></svg></div>
+        <h3>AI coding assistants</h3>
+        <p>Daily work with Cursor and Claude Code to design, implement and review backend code.</p>
+      </div>
+      <div class="card">
+        <div class="ai-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h8l4 4v14H7z"/><path d="M15 3v4h4M10 12h6M10 16h6"/></svg></div>
+        <h3>Spec-Driven Development</h3>
+        <p>Specifications first, with OpenSpec and strict SDD practices, so that both people and AI agents build against a clear contract.</p>
+      </div>
+      <div class="card">
+        <div class="ai-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7.5l3 8M16 7.5l-3 8M8.5 6h7"/></svg></div>
+        <h3>Custom agent skills &amp; workflows</h3>
+        <p>Building custom agent skills and AI-driven workflows that optimize software delivery.</p>
+      </div>
+    </div>
+    <div class="ai-callout">
+      <p>The assistant on this page is one of my AI projects. Ask it anything about my background, projects or skills.</p>
+      <button class="btn" type="button" data-open-chat>Ask the assistant</button>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="container block">
+    <div class="section-head">
+      <div class="eyebrow">Background</div>
+      <h2>Education &amp; certificates</h2>
+    </div>
+    <div class="edu">
+      <div class="card">
+        <h3>Education</h3>
+        <ul class="plain">
+          <li>Bachelor's degree in Information Systems and Technologies<div class="sub">Ukrainian State University of Chemical Technology · 2000 – 2006</div></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Certificates</h3>
+        <ul class="plain">
+          <li>Zend Certified Architect, Zend Framework 2</li>
+          <li>Zend Certified Engineer, Zend Framework 1</li>
+          <li>Zend Certified Engineer, PHP 5.3</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container final">
+    <div class="final-box">
+      <h2>Let's talk</h2>
+      <p>Have a question about my experience? Ask the assistant, or reach out directly.</p>
+      <button class="btn" type="button" data-open-chat>Ask my AI assistant</button>
+      <div class="contacts">
+        <a href="mailto:hello@vadymleontiev.dev">hello@vadymleontiev.dev</a>
+        <a href="https://github.com/newage" target="_blank" rel="noopener">github.com/newage</a>
+        <!-- LinkedIn: add your profile URL here -->
+      </div>
+    </div>
+    <footer class="footer">
+      <div>© 2026 Vadym Leontiev</div>
+      <div>Warsaw, Poland</div>
+    </footer>
+  </section>
+</main>
+
+<!-- CHAT -->
+<div class="chat" id="chat" role="dialog" aria-label="AI assistant" aria-hidden="true">
+  <div class="chat-head">
+    <div class="status-dot pulse"></div>
+    <div class="chat-title">
+      <strong>Vadym's AI assistant</strong>
+      <span>Answers questions about Vadym's background</span>
+    </div>
+    <button class="icon-btn" type="button" id="chat-close" aria-label="Close chat">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="chat-body" id="chat-body" aria-live="polite"></div>
+  <form class="chat-form" id="chat-form">
+    <label for="chat-input" class="sr-only">Your message</label>
+    <input id="chat-input" type="text" placeholder="Ask about Vadym…" autocomplete="off" maxlength="1000">
+    <button type="submit" aria-label="Send">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </form>
+</div>
+
+<button class="chat-fab" type="button" id="chat-fab" aria-label="Open chat" aria-controls="chat" aria-expanded="false">
+  <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.7 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
+</button>
+
+<script>
+(() => {
+  /* ===== CHAT SETTINGS =====
+     CHAT_API_URL = null  -> demo mode: canned answers from Vadym's resume (no backend needed).
+     '/chat' -> the real assistant (same origin as this page).
+     Request:  POST { "messages": [{ "role": "user", "content": "...", "lang": "uk"|"en"|"pl" }] }  (always one element)
+     Response: { "reply": "..." }  (also for 400/429/502, where reply is a localized message)  */
+  const CHAT_API_URL = '/chat';
+
+  const GREETING_EN = "Hi! I'm Vadym's AI assistant. Ask me about his experience, skills, projects or how he works with AI.";
+  const CHIPS_EN = ['Key achievements', 'Tech stack', 'Experience with AI', 'Certificates'];
+
+  /* Demo answers (used only when CHAT_API_URL is null) */
+  const KB = [
+    { k: ['achievement', 'accomplish', 'impact', 'built', 'project'],
+      a: "Highlights from 13 years at Englishdom:\n• a standalone payments and subscriptions service (auto-renewals, recurring billing)\n• a high-throughput PHP + Swoole microservice syncing data with Creatio CRM in real time\n• an event-driven layer on Apache Kafka with a shared domain-events library\n• decoupling a legacy monolith into RESTful microservices (Mezzio, Event Sourcing, DDD)\n• the full backend of AllRight Pro on Symfony and Doctrine" },
+    { k: ['stack', 'tech', 'skill', 'language', 'php', 'kafka', 'database', 'docker'],
+      a: "Core: PHP 8.x (20+ years), Swoole, REST, gRPC.\nArchitecture: microservices, DDD, event-driven.\nMessaging: Apache Kafka, RabbitMQ, WebSockets.\nFrameworks: Mezzio, Laminas, Symfony (API Platform).\nData: MySQL, Redis, MongoDB.\nTooling: Docker, Git, GitLab CI, Linux.\nTesting: TDD/BDD with PHPUnit, Behat, Codeception, PhpSpec." },
+    { k: ['ai', 'cursor', 'claude', 'openspec', 'agent', 'llm'],
+      a: "Vadym uses AI coding assistants (Cursor, Claude Code) in daily work, practices Spec-Driven Development with OpenSpec, and builds custom agent skills and AI-driven workflows to optimize software delivery." },
+    { k: ['certif', 'zend', 'education', 'degree', 'university', 'study'],
+      a: "Certificates: Zend Certified Architect (Zend Framework 2), Zend Certified Engineer (Zend Framework 1) and Zend Certified Engineer (PHP 5.3).\nEducation: Bachelor's degree in Information Systems and Technologies, Ukrainian State University of Chemical Technology (2000-2006)." },
+    { k: ['experience', 'career', 'work', 'job', 'compan', 'englishdom', 'everlution', 'exigen', 'proxystep'],
+      a: "Englishdom (2013-2026): Senior PHP Developer / Lead Backend Architect.\nEverlution (2011-2013): Senior PHP Developer / Team Leader Assistant, led a team of 3.\nExigen (2009-2011): Senior PHP Developer, ontology-based knowledge system.\nProxyStep (2008-2009): Senior PHP Developer, web portals for international clients." },
+    { k: ['contact', 'email', 'reach', 'hire', 'github', 'linkedin'],
+      a: "You can reach Vadym at vadim.leontiev@gmail.com. His open source projects are on github.com/newage." }
+  ];
+  const FALLBACK_EN = "I'm running in demo mode, so I can only answer about Vadym's achievements, tech stack, AI experience, certificates, career history and contacts. Try one of those!";
+
+  /* ===== I18N ===== */
+  const LANGS = ['en', 'pl', 'uk'];
+
+  /* Page strings: [English source text (exact, trimmed), Polish, Ukrainian].
+     Untranslated strings (names, tech terms) fall back to the English source. */
+  const ROWS = [
+    ['Main navigation', 'Nawigacja główna', 'Головна навігація'],
+    ['Language', 'Język', 'Мова'],
+    ['About', 'O mnie', 'Про мене'],
+    ['Experience', 'Doświadczenie', 'Досвід'],
+    ['Skills', 'Umiejętności', 'Навички'],
+    ['Contact', 'Kontakt', 'Контакти'],
+    ['Vadym Leontiev · Warsaw, Poland', 'Vadym Leontiev · Warszawa, Polska', 'Vadym Leontiev · Варшава, Польща'],
+    ['Senior Backend Engineer building scalable systems', 'Senior Backend Engineer budujący skalowalne systemy', 'Senior Backend Engineer, що будує масштабовані системи'],
+    ['20+ years in software development, 13 of them leading backend architecture at Englishdom. Microservices, event-driven systems, payments, and AI-driven engineering workflows.',
+     'Ponad 20 lat w tworzeniu oprogramowania, w tym 13 lat kierowania architekturą backendu w Englishdom. Mikroserwisy, systemy zdarzeniowe, płatności i procesy inżynierskie wspierane przez AI.',
+     'Понад 20 років у розробці ПЗ, з них 13 років керування архітектурою бекенду в Englishdom. Мікросервіси, подієві системи, платежі та інженерні процеси на основі AI.'],
+    ['Ask my AI assistant', 'Zapytaj mojego asystenta AI', 'Запитайте мого AI-асистента'],
+    ['Ask about my experience, skills and projects · Answers in seconds', 'Zapytaj o moje doświadczenie, umiejętności i projekty · Odpowiedzi w kilka sekund', 'Питайте про мій досвід, навички та проєкти · Відповіді за секунди'],
+    ['Backend, done properly', 'Backend zrobiony porządnie', 'Бекенд, зроблений як слід'],
+    ['I specialize in scalable microservice architectures built with PHP 8+, Swoole, Apache Kafka and Domain-Driven Design, with Spec-Driven Development as the working method.',
+     'Specjalizuję się w skalowalnych architekturach mikroserwisowych opartych na PHP 8+, Swoole, Apache Kafka i Domain-Driven Design, a metodą pracy jest Spec-Driven Development.',
+     'Спеціалізуюся на масштабованих мікросервісних архітектурах на PHP 8+, Swoole, Apache Kafka та Domain-Driven Design, а методом роботи є Spec-Driven Development.'],
+    ['My track record covers high-performance payment engines, asynchronous CRM integrations and event-driven systems. I decoupled monolithic legacy code into clean RESTful microservices and launched the full backend of a product from scratch.',
+     'Moje doświadczenie obejmuje wydajne silniki płatności, asynchroniczne integracje z CRM i systemy zdarzeniowe. Rozbiłem monolityczny kod legacy na czyste mikroserwisy RESTful i od zera uruchomiłem cały backend produktu.',
+     'Мій досвід охоплює продуктивні платіжні рушії, асинхронні інтеграції з CRM та подієві системи. Я розділив монолітний legacy-код на чисті RESTful-мікросервіси та з нуля запустив повний бекенд продукту.'],
+    ['Today I also use modern AI engineering tools and custom agent skills to build AI-driven workflows and speed up software delivery.',
+     'Dziś korzystam także z nowoczesnych narzędzi AI i własnych umiejętności agentów, aby budować procesy oparte na AI i przyspieszać dostarczanie oprogramowania.',
+     'Сьогодні я також використовую сучасні AI-інструменти та власні навички агентів, щоб будувати AI-процеси й пришвидшувати розробку ПЗ.'],
+    ['years of software development', 'lat w tworzeniu oprogramowania', 'років у розробці ПЗ'],
+    ['years driving backend architecture at Englishdom', 'lat kierowania architekturą backendu w Englishdom', 'років керування архітектурою бекенду в Englishdom'],
+    ['Zend certifications', 'certyfikaty Zend', 'сертифікати Zend'],
+    ["Where I've worked", 'Gdzie pracowałem', 'Де я працював'],
+    ['From web portals for international clients to payments and event-driven platforms.', 'Od portali internetowych dla klientów zagranicznych po płatności i platformy zdarzeniowe.', 'Від веб-порталів для міжнародних клієнтів до платежів і подієвих платформ.'],
+    ['Senior PHP Developer / Lead Backend Architect · Warsaw (remote, HQ Ukraine)', 'Senior PHP Developer / Lead Backend Architect · Warszawa (zdalnie, siedziba na Ukrainie)', 'Senior PHP Developer / Lead Backend Architect · Варшава (віддалено, головний офіс в Україні)'],
+    ['Standalone payments and subscriptions service: secure processing, auto-renewals, recurring billing.', 'Samodzielny serwis płatności i subskrypcji: bezpieczne przetwarzanie, automatyczne odnowienia, płatności cykliczne.', 'Окремий сервіс платежів і підписок: безпечна обробка, автоматичне поновлення, регулярні списання.'],
+    ['High-throughput async microservice (PHP + Swoole) for real-time two-way sync with Creatio CRM.', 'Wydajny asynchroniczny mikroserwis (PHP + Swoole) do dwukierunkowej synchronizacji z Creatio CRM w czasie rzeczywistym.', 'Високопродуктивний асинхронний мікросервіс (PHP + Swoole) для двосторонньої синхронізації з Creatio CRM у реальному часі.'],
+    ['Event-driven messaging over Apache Kafka with a shared library for domain events.', 'Komunikacja zdarzeniowa oparta na Apache Kafka ze wspólną biblioteką zdarzeń domenowych.', 'Подієвий обмін повідомленнями на Apache Kafka зі спільною бібліотекою доменних подій.'],
+    ['Decoupled a legacy monolith into RESTful microservices (Mezzio, Event Sourcing, DDD).', 'Rozbicie monolitu legacy na mikroserwisy RESTful (Mezzio, Event Sourcing, DDD).', 'Розділення legacy-моноліту на RESTful-мікросервіси (Mezzio, Event Sourcing, DDD).'],
+    ['Built the entire backend of AllRight Pro on Symfony and Doctrine.', 'Zbudowanie całego backendu AllRight Pro na Symfony i Doctrine.', 'Створення всього бекенду AllRight Pro на Symfony і Doctrine.'],
+    ['Spec-Driven Development and BDD/TDD standards for stable, well-tested systems.', 'Spec-Driven Development oraz standardy BDD/TDD dla stabilnych, dobrze przetestowanych systemów.', 'Spec-Driven Development і стандарти BDD/TDD для стабільних, добре протестованих систем.'],
+    ['Senior PHP Developer / Team Leader Assistant · Dnipropetrovsk, Ukraine', 'Senior PHP Developer / Team Leader Assistant · Dniepropietrowsk, Ukraina', 'Senior PHP Developer / Team Leader Assistant · Дніпропетровськ, Україна'],
+    ['Led a team of three: two backend developers and one QA.', 'Kierowanie zespołem trzech osób: dwóch backend developerów i jednego QA.', 'Керування командою з трьох осіб: двоє бекенд-розробників і один QA.'],
+    ['Architected web applications and microservices on Zend Framework and Mezzio.', 'Projektowanie architektury aplikacji webowych i mikroserwisów na Zend Framework i Mezzio.', 'Проєктування архітектури веб-застосунків і мікросервісів на Zend Framework та Mezzio.'],
+    ['Standardized dependency management and coding practices across projects.', 'Ujednolicenie zarządzania zależnościami i praktyk programistycznych w projektach.', 'Стандартизація керування залежностями та практик програмування в проєктах.'],
+    ['Senior PHP Developer · Dnipropetrovsk, Ukraine', 'Senior PHP Developer · Dniepropietrowsk, Ukraina', 'Senior PHP Developer · Дніпропетровськ, Україна'],
+    ['Built an internal enterprise knowledge management system based on ontologies.', 'Zbudowanie wewnętrznego korporacyjnego systemu zarządzania wiedzą opartego na ontologiach.', 'Створення внутрішньої корпоративної системи управління знаннями на основі онтологій.'],
+    ['Introduced automated testing, CI pipelines and version control best practices.', 'Wdrożenie testów automatycznych, potoków CI i dobrych praktyk kontroli wersji.', 'Впровадження автоматизованого тестування, CI-пайплайнів і найкращих практик контролю версій.'],
+    ['Developed web portals and applications for international clients, including a French insurance provider.', 'Tworzenie portali i aplikacji webowych dla klientów zagranicznych, w tym francuskiego ubezpieczyciela.', 'Розробка веб-порталів і застосунків для міжнародних клієнтів, зокрема французького страховика.'],
+    ['Tools and techniques', 'Narzędzia i techniki', 'Інструменти та техніки'],
+    ['Programming & core', 'Programowanie i podstawy', 'Програмування та основи'],
+    ['Swoole (async PHP)', 'Swoole (asynchroniczny PHP)', 'Swoole (асинхронний PHP)'],
+    ['Architecture', 'Architektura', 'Архітектура'],
+    ['Microservices', 'Mikroserwisy', 'Мікросервіси'],
+    ['Event-Driven Architecture', 'Architektura zdarzeniowa', 'Подієва архітектура'],
+    ['Messaging & streaming', 'Komunikaty i streaming', 'Повідомлення та стрімінг'],
+    ['Frameworks', 'Frameworki', 'Фреймворки'],
+    ['Data', 'Dane', 'Дані'],
+    ['DevOps & tooling', 'DevOps i narzędzia', 'DevOps та інструменти'],
+    ['Testing & quality', 'Testowanie i jakość', 'Тестування та якість'],
+    ['Also working with', 'Pracuję również z', 'Також працюю з'],
+    ['Actively learning', 'Aktywnie się uczę', 'Активно вивчаю'],
+    ['Python (basic / scripting)', 'Python (podstawy / skrypty)', 'Python (базово / скрипти)'],
+    ['React.js (basic)', 'React.js (podstawy)', 'React.js (базово)'],
+    ['GraphQL (basic)', 'GraphQL (podstawy)', 'GraphQL (базово)'],
+    ['Node.js (basic)', 'Node.js (podstawy)', 'Node.js (базово)'],
+    ['AI in my engineering work', 'AI w mojej pracy inżynierskiej', 'AI в моїй інженерній роботі'],
+    ['I treat AI as part of the engineering toolchain: it speeds up delivery when it is guided by clear specifications and good tests.', 'Traktuję AI jako część narzędzi inżynierskich: przyspiesza dostarczanie, gdy kierują nim jasne specyfikacje i dobre testy.', 'Я сприймаю AI як частину інженерного інструментарію: він пришвидшує розробку, коли його спрямовують чіткі специфікації та якісні тести.'],
+    ['AI coding assistants', 'Asystenci kodowania AI', 'AI-асистенти для кодування'],
+    ['Daily work with Cursor and Claude Code to design, implement and review backend code.', 'Codzienna praca z Cursor i Claude Code przy projektowaniu, implementacji i przeglądzie kodu backendu.', 'Щоденна робота з Cursor і Claude Code для проєктування, реалізації та рев’ю бекенд-коду.'],
+    ['Spec-Driven Development', 'Spec-Driven Development', 'Spec-Driven Development'],
+    ['Specifications first, with OpenSpec and strict SDD practices, so that both people and AI agents build against a clear contract.', 'Najpierw specyfikacje, z OpenSpec i rygorystycznymi praktykami SDD, tak aby zarówno ludzie, jak i agenci AI pracowali według jasnego kontraktu.', 'Спочатку специфікації, з OpenSpec і суворими практиками SDD, щоб і люди, і AI-агенти працювали за чітким контрактом.'],
+    ['Custom agent skills & workflows', 'Własne umiejętności agentów i procesy', 'Власні навички агентів і процеси'],
+    ['Building custom agent skills and AI-driven workflows that optimize software delivery.', 'Tworzenie własnych umiejętności agentów i procesów opartych na AI, które optymalizują dostarczanie oprogramowania.', 'Створення власних навичок агентів і AI-процесів, що оптимізують розробку ПЗ.'],
+    ['The assistant on this page is one of my AI projects. Ask it anything about my background, projects or skills.', 'Asystent na tej stronie to jeden z moich projektów AI. Zapytaj go o moje doświadczenie, projekty lub umiejętności.', 'Асистент на цій сторінці — один із моїх AI-проєктів. Запитайте його про мій бекґраунд, проєкти чи навички.'],
+    ['Ask the assistant', 'Zapytaj asystenta', 'Запитати асистента'],
+    ['Background', 'Wykształcenie', 'Освіта'],
+    ['Education & certificates', 'Wykształcenie i certyfikaty', 'Освіта та сертифікати'],
+    ['Education', 'Wykształcenie', 'Освіта'],
+    ["Bachelor's degree in Information Systems and Technologies", 'Licencjat z systemów informacyjnych i technologii', 'Бакалавр з інформаційних систем і технологій'],
+    ['Ukrainian State University of Chemical Technology · 2000 – 2006', 'Ukraiński Państwowy Uniwersytet Technologii Chemicznych · 2000 – 2006', 'Український державний хіміко-технологічний університет · 2000 – 2006'],
+    ['Certificates', 'Certyfikaty', 'Сертифікати'],
+    ["Let's talk", 'Porozmawiajmy', 'Поспілкуймося'],
+    ['Have a question about my experience? Ask the assistant, or reach out directly.', 'Masz pytanie o moje doświadczenie? Zapytaj asystenta lub skontaktuj się bezpośrednio.', 'Є питання про мій досвід? Запитайте асистента або зв’яжіться зі мною напряму.'],
+    ['Warsaw, Poland', 'Warszawa, Polska', 'Варшава, Польща'],
+    ['AI assistant', 'Asystent AI', 'AI-асистент'],
+    ["Vadym's AI assistant", 'Asystent AI Vadyma', 'AI-асистент Вадима'],
+    ["Answers questions about Vadym's background", 'Odpowiada na pytania o doświadczenie Vadyma', 'Відповідає на питання про досвід Вадима'],
+    ['Close chat', 'Zamknij czat', 'Закрити чат'],
+    ['Open chat', 'Otwórz czat', 'Відкрити чат'],
+    ['Your message', 'Twoja wiadomość', 'Ваше повідомлення'],
+    ['Ask about Vadym…', 'Zapytaj o Vadyma…', 'Запитайте про Вадима…'],
+    ['Send', 'Wyślij', 'Надіслати'],
+    ['Typing…', 'Pisze…', 'Друкує…'],
+    ['Sorry, something went wrong. Please try again in a moment.', 'Przepraszam, coś poszło nie tak. Spróbuj ponownie za chwilę.', 'Вибачте, щось пішло не так. Спробуйте ще раз за мить.']
+  ];
+  const DESC = {
+    en: document.querySelector('meta[name="description"]').content,
+    pl: 'Senior Backend Engineer z ponad 20-letnim doświadczeniem: PHP, mikroserwisy, Kafka, DDD i procesy inżynierskie oparte na AI. Zapytaj mojego asystenta AI o moje doświadczenie.',
+    uk: 'Senior Backend Engineer з понад 20-річним досвідом: PHP, мікросервіси, Kafka, DDD та інженерні процеси на основі AI. Запитайте мого AI-асистента про мій досвід.'
+  };
+  const D = { pl: {}, uk: {} };
+  ROWS.forEach(([en, pl, uk]) => { D.pl[en] = pl; D.uk[en] = uk; });
+
+  const GREETINGS = {
+    en: GREETING_EN,
+    pl: 'Cześć! Jestem asystentem AI Vadyma. Zapytaj mnie o jego doświadczenie, umiejętności, projekty lub o to, jak pracuje z AI.',
+    uk: 'Привіт! Я AI-асистент Вадима. Запитайте мене про його досвід, навички, проєкти або про те, як він працює з AI.'
+  };
+  const CHIPS_I18N = {
+    en: CHIPS_EN,
+    pl: ['Kluczowe osiągnięcia', 'Stos technologiczny', 'Doświadczenie z AI', 'Certyfikaty'],
+    uk: ['Ключові досягнення', 'Технологічний стек', 'Досвід з AI', 'Сертифікати']
+  };
+  const FALLBACKS = {
+    en: FALLBACK_EN,
+    pl: 'Działam w trybie demo, więc mogę odpowiadać tylko o osiągnięciach Vadyma, stosie technologicznym, doświadczeniu z AI, certyfikatach, historii kariery i kontaktach. Wypróbuj jedną z tych opcji!',
+    uk: 'Я працюю в демо-режимі, тому можу відповідати лише про досягнення Вадима, технологічний стек, досвід з AI, сертифікати, кар’єру та контакти. Спробуйте один із цих варіантів!'
+  };
+  /* Extra keywords per KB entry (same order as KB) and translated answers */
+  const KW_EXTRA = [
+    ['osiągni', 'sukces', 'projekt', 'досягн', 'проєкт', 'проект'],
+    ['stos', 'technolog', 'umiejęt', 'języ', 'baz', 'стек', 'навич', 'мов', 'баз'],
+    ['sztuczn', 'штучн'],
+    ['certyfik', 'wykszta', 'studi', 'uniwers', 'сертиф', 'освіт', 'універс', 'навчан', 'диплом'],
+    ['doświad', 'karier', 'prac', 'firm', 'досвід', 'кар', 'робот', 'компан'],
+    ['kontakt', 'mail', 'контакт', 'пошт']
+  ];
+  const KB_I18N = {
+    pl: [
+      "Najważniejsze z 13 lat w Englishdom:\n• samodzielny serwis płatności i subskrypcji (automatyczne odnowienia, płatności cykliczne)\n• wydajny mikroserwis PHP + Swoole synchronizujący dane z Creatio CRM w czasie rzeczywistym\n• warstwa zdarzeniowa na Apache Kafka ze wspólną biblioteką zdarzeń domenowych\n• rozbicie monolitu legacy na mikroserwisy RESTful (Mezzio, Event Sourcing, DDD)\n• cały backend AllRight Pro na Symfony i Doctrine",
+      "Podstawy: PHP 8.x (20+ lat), Swoole, REST, gRPC.\nArchitektura: mikroserwisy, DDD, zdarzeniowa.\nKomunikaty: Apache Kafka, RabbitMQ, WebSockets.\nFrameworki: Mezzio, Laminas, Symfony (API Platform).\nDane: MySQL, Redis, MongoDB.\nNarzędzia: Docker, Git, GitLab CI, Linux.\nTesty: TDD/BDD z PHPUnit, Behat, Codeception, PhpSpec.",
+      "Vadym na co dzień korzysta z asystentów kodowania AI (Cursor, Claude Code), stosuje Spec-Driven Development z OpenSpec oraz tworzy własne umiejętności agentów i procesy oparte na AI, które optymalizują dostarczanie oprogramowania.",
+      "Certyfikaty: Zend Certified Architect (Zend Framework 2), Zend Certified Engineer (Zend Framework 1) i Zend Certified Engineer (PHP 5.3).\nWykształcenie: licencjat z systemów informacyjnych i technologii, Ukraiński Państwowy Uniwersytet Technologii Chemicznych (2000-2006).",
+      "Englishdom (2013-2026): Senior PHP Developer / Lead Backend Architect.\nEverlution (2011-2013): Senior PHP Developer / Team Leader Assistant, kierował zespołem 3 osób.\nExigen (2009-2011): Senior PHP Developer, system wiedzy oparty na ontologiach.\nProxyStep (2008-2009): Senior PHP Developer, portale dla klientów zagranicznych.",
+      "Z Vadymem można skontaktować się pod adresem vadim.leontiev@gmail.com. Jego projekty open source są na github.com/newage."
+    ],
+    uk: [
+      "Головне з 13 років в Englishdom:\n• окремий сервіс платежів і підписок (автоматичне поновлення, регулярні списання)\n• високопродуктивний мікросервіс PHP + Swoole для синхронізації з Creatio CRM у реальному часі\n• подієвий рівень на Apache Kafka зі спільною бібліотекою доменних подій\n• розділення legacy-моноліту на RESTful-мікросервіси (Mezzio, Event Sourcing, DDD)\n• увесь бекенд AllRight Pro на Symfony і Doctrine",
+      "Основа: PHP 8.x (20+ років), Swoole, REST, gRPC.\nАрхітектура: мікросервіси, DDD, подієва.\nПовідомлення: Apache Kafka, RabbitMQ, WebSockets.\nФреймворки: Mezzio, Laminas, Symfony (API Platform).\nДані: MySQL, Redis, MongoDB.\nІнструменти: Docker, Git, GitLab CI, Linux.\nТестування: TDD/BDD з PHPUnit, Behat, Codeception, PhpSpec.",
+      "Вадим щодня користується AI-асистентами для кодування (Cursor, Claude Code), практикує Spec-Driven Development з OpenSpec та створює власні навички агентів і AI-процеси, що оптимізують розробку ПЗ.",
+      "Сертифікати: Zend Certified Architect (Zend Framework 2), Zend Certified Engineer (Zend Framework 1) і Zend Certified Engineer (PHP 5.3).\nОсвіта: бакалавр з інформаційних систем і технологій, Український державний хіміко-технологічний університет (2000-2006).",
+      "Englishdom (2013-2026): Senior PHP Developer / Lead Backend Architect.\nEverlution (2011-2013): Senior PHP Developer / Team Leader Assistant, керував командою з 3 осіб.\nExigen (2009-2011): Senior PHP Developer, система знань на основі онтологій.\nProxyStep (2008-2009): Senior PHP Developer, веб-портали для міжнародних клієнтів.",
+      "З Вадимом можна зв’язатися за адресою vadim.leontiev@gmail.com. Його open source проєкти — на github.com/newage."
+    ]
+  };
+
+  let lang = 'en';
+  let GREETING = GREETING_EN, CHIPS = CHIPS_EN, FALLBACK = FALLBACK_EN;
+  const t = (s) => (lang === 'en' ? s : (D[lang][s] || s));
+
+  const chat = document.getElementById('chat');
+  const body = document.getElementById('chat-body');
+  const form = document.getElementById('chat-form');
+  const input = document.getElementById('chat-input');
+  const fab = document.getElementById('chat-fab');
+  const history = [];
+  let started = false;
+
+  function addMessage(text, role) {
+    const el = document.createElement('div');
+    el.className = 'msg ' + (role === 'user' ? 'user' : 'bot');
+    el.textContent = text;
+    body.appendChild(el);
+    body.scrollTop = body.scrollHeight;
+    return el;
+  }
+
+  function addChips() {
+    const wrap = document.createElement('div');
+    wrap.className = 'chips';
+    CHIPS.forEach((label) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip';
+      b.textContent = label;
+      b.addEventListener('click', () => { wrap.remove(); send(label); });
+      wrap.appendChild(b);
+    });
+    body.appendChild(wrap);
+  }
+
+  function setOpen(open) {
+    chat.classList.toggle('open', open);
+    chat.setAttribute('aria-hidden', String(!open));
+    fab.setAttribute('aria-expanded', String(open));
+    fab.setAttribute('aria-label', t(open ? 'Close chat' : 'Open chat'));
+    if (open && !started) {
+      started = true;
+      addMessage(GREETING, 'bot');
+      history.push({ role: 'assistant', content: GREETING });
+      addChips();
+    }
+    if (open) setTimeout(() => input.focus(), 150);
+  }
+
+  function demoReply(message) {
+    const q = message.toLowerCase();
+    const i = KB.findIndex((e, n) => e.k.concat(KW_EXTRA[n]).some((w) => new RegExp('(^|[^\\p{L}])' + w, 'u').test(q)));
+    if (i < 0) return FALLBACK;
+    return lang === 'en' ? KB[i].a : KB_I18N[lang][i];
+  }
+
+  async function getReply(message) {
+    if (!CHAT_API_URL) {
+      await new Promise((r) => setTimeout(r, 500));
+      return demoReply(message);
+    }
+    const res = await fetch(CHAT_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: [{ role: 'user', content: message, lang }] })
+    });
+    // reply is read for non-2xx too; a general error only when the body cannot be parsed
+    const data = await res.json();
+    if (typeof data.reply !== 'string') throw new Error(data.error || 'HTTP ' + res.status);
+    return data.reply;
+  }
+
+  async function send(text) {
+    const message = text.trim();
+    if (!message) return;
+    body.querySelector('.chips')?.remove();
+    addMessage(message, 'user');
+    const past = history.slice();
+    history.push({ role: 'user', content: message });
+    const typing = addMessage(t('Typing…'), 'bot');
+    typing.classList.add('typing');
+    try {
+      const reply = await getReply(message, past);
+      typing.remove();
+      addMessage(reply, 'bot');
+      history.push({ role: 'assistant', content: reply });
+    } catch (e) {
+      typing.remove();
+      addMessage(t('Sorry, something went wrong. Please try again in a moment.'), 'bot');
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const v = input.value;
+    input.value = '';
+    send(v);
+  });
+  fab.addEventListener('click', () => setOpen(!chat.classList.contains('open')));
+  document.getElementById('chat-close').addEventListener('click', () => { setOpen(false); fab.focus(); });
+  document.querySelectorAll('[data-open-chat]').forEach((b) => b.addEventListener('click', () => setOpen(true)));
+  chat.addEventListener('keydown', (e) => { if (e.key === 'Escape') { setOpen(false); fab.focus(); } });
+
+  /* Collect translatable text nodes and attributes once, keeping the English source */
+  const textNodes = [];
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode: (n) => (n.nodeValue.trim() && !n.parentElement.closest('script,select,#chat-body'))
+      ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+  });
+  while (walker.nextNode()) {
+    const n = walker.currentNode;
+    const src = n.nodeValue.trim();
+    textNodes.push({ n, src, lead: n.nodeValue.match(/^\s*/)[0], trail: n.nodeValue.match(/\s*$/)[0] });
+  }
+  const attrs = [];
+  document.querySelectorAll('[aria-label],[placeholder]').forEach((el) => {
+    if (el === fab) return;
+    ['aria-label', 'placeholder'].forEach((a) => { if (el.hasAttribute(a)) attrs.push({ el, a, src: el.getAttribute(a) }); });
+  });
+  const metaDesc = document.querySelector('meta[name="description"]');
+  const langSelect = document.getElementById('lang');
+
+  function applyLang(next) {
+    lang = LANGS.includes(next) ? next : 'en';
+    document.documentElement.lang = lang;
+    textNodes.forEach((x) => { x.n.nodeValue = x.lead + t(x.src) + x.trail; });
+    attrs.forEach((x) => x.el.setAttribute(x.a, t(x.src)));
+    metaDesc.content = DESC[lang];
+    GREETING = GREETINGS[lang]; CHIPS = CHIPS_I18N[lang]; FALLBACK = FALLBACKS[lang];
+    langSelect.value = lang;
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+    /* restart the conversation in the new language */
+    body.innerHTML = '';
+    history.length = 0;
+    started = false;
+    setOpen(chat.classList.contains('open'));
+  }
+
+  langSelect.addEventListener('change', () => applyLang(langSelect.value));
+  let initial = 'en';
+  try { initial = localStorage.getItem('lang') || ''; } catch (e) {}
+  if (!LANGS.includes(initial)) initial = LANGS.find((l) => (navigator.language || '').toLowerCase().startsWith(l)) || 'en';
+  if (initial !== 'en') applyLang(initial);
+
+  /* Staggered reveal of experience cards */
+  const jobs = document.querySelectorAll('.job');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          const i = [...jobs].indexOf(en.target);
+          setTimeout(() => en.target.classList.add('visible'), i * 150);
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    jobs.forEach((s) => io.observe(s));
+  } else {
+    jobs.forEach((s) => s.classList.add('visible'));
+  }
+})();
+</script>
+</body>
+</html>

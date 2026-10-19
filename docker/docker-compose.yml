@@ -1,0 +1,16 @@
+# Local development: docker compose -f docker/docker-compose.yml up
+# Needs frontend/.env (cp frontend/.env.example frontend/.env and fill in the keys).
+services:
+  app:
+    image: node:22-alpine
+    working_dir: /app/frontend
+    command: sh -c "npm install && npm run dev"
+    ports:
+      - "${PORT:-3000}:3000"
+    volumes:
+      - ../frontend:/app/frontend
+      - ../data:/app/data:ro
+      - node_modules:/app/frontend/node_modules # keep Linux deps apart from host's
+
+volumes:
+  node_modules:

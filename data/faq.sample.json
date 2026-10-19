@@ -1,0 +1,648 @@
+[
+  {
+    "parent_id": "profile-summary",
+    "type": "profile",
+    "project": null,
+    "lang": "en",
+    "text": "Vadym is a Senior Backend Engineer and AI engineer based in Warsaw, Poland, with 20+ years of software development experience. He spent 13 years (2013–2026) at Englishdom, an online English-learning platform, and was its Lead Backend Architect from 2022. He specializes in PHP 8, microservices, event-driven architecture and AI-driven process automation.",
+    "questions": [
+      "Who is Vadym Leontiev?",
+      "Tell me about Vadym in a few sentences.",
+      "How many years of experience does Vadym have?",
+      "Where is Vadym based?",
+      "What does Vadym specialize in?",
+      "What technologies does Vadym know?",
+      "Хто такий Вадим Леонт'єв?",
+      "Скільки років досвіду має Вадим?",
+      "Kim jest Vadym Leontiev?"
+    ]
+  },
+  {
+    "parent_id": "profile-positioning",
+    "type": "profile",
+    "project": null,
+    "lang": "en",
+    "text": "Vadym describes himself as a fast-learning backend developer and AI engineer. His ideal role combines development, system design and automation, and he sees AI-powered process automation as the most interesting direction today. He prioritizes architecture and automation over people management, because much of the code is now written by AI agents.",
+    "questions": [
+      "What role is Vadym looking for?",
+      "How does Vadym describe himself?",
+      "Does Vadym want to manage a team?",
+      "Is Vadym a backend developer or an AI engineer?",
+      "Яку роль шукає Вадим?",
+      "Jakiej roli szuka Vadym?"
+    ]
+  },
+  {
+    "parent_id": "profile-strengths",
+    "type": "profile",
+    "project": null,
+    "lang": "en",
+    "text": "Vadym's key strengths: an analytical mindset, a love of complex problems and the ability to learn new technologies fast. He understands business analysis and can analyze a company's processes and propose solutions. He has introduced Swoole, Kafka and Spec-Driven Development into his team's work.",
+    "questions": [
+      "What are Vadym's key strengths?",
+      "Can Vadym analyze business processes?",
+      "How fast does Vadym learn new technologies?",
+      "Why should we hire Vadym?",
+      "Які сильні сторони має Вадим?",
+      "Jakie są mocne strony Vadyma?"
+    ]
+  },
+  {
+    "parent_id": "profile-interests",
+    "type": "profile",
+    "project": null,
+    "lang": "en",
+    "text": "Vadym's job preferences: product companies, above all education platforms, then internal business systems and fintech; e-commerce is of lower interest. He does not want to work in banking because of rigid processes and little room for creativity. He likes optimizing and evolving legacy systems, but not bug-fixing-only legacy work or closed roles where he cannot propose changes.",
+    "questions": [
+      "What industries is Vadym interested in?",
+      "Would Vadym work in banking or fintech?",
+      "Does Vadym want to work on legacy projects?",
+      "What kind of company does Vadym prefer?",
+      "What kind of work does Vadym not want?",
+      "В яких галузях Вадим хоче працювати?",
+      "W jakich branżach Vadym chce pracować?"
+    ]
+  },
+  {
+    "parent_id": "profile-education",
+    "type": "profile",
+    "project": null,
+    "lang": "en",
+    "text": "Vadym's education: Bachelor's degree in Information Systems and Technologies, Ukrainian State University of Chemical Technology (2000–2006). Certificates: Zend Certified Architect (Zend Framework 2), Zend Certified Engineer (Zend Framework 1) and Zend Certified Engineer (PHP 5.3). He plans to take another Zend certification exam.",
+    "questions": [
+      "What is Vadym's education?",
+      "Does Vadym have any certifications?",
+      "Which Zend certificates does Vadym hold?",
+      "Where did Vadym study?",
+      "Яка освіта у Вадима?",
+      "Які сертифікати Zend має Вадим?",
+      "Jakie wykształcenie ma Vadym?"
+    ]
+  },
+  {
+    "parent_id": "skills-backend",
+    "type": "skills",
+    "project": null,
+    "lang": "en",
+    "text": "Backend skills: PHP 8.x (20+ years), Mezzio / Laminas (10+ years in production), Symfony with API Platform and Doctrine (3+ years), asynchronous PHP with Swoole (2+ years). He designs RESTful APIs and has used gRPC. Basic level in Python scripting, Node.js, React.js and GraphQL.",
+    "questions": [
+      "What is Vadym's backend tech stack?",
+      "How many years of PHP experience does Vadym have?",
+      "Does Vadym know Symfony or Laminas?",
+      "Has Vadym worked with async PHP or Swoole?",
+      "Does Vadym know Python or Node.js?",
+      "Який бекенд-стек знає Вадим?",
+      "Скільки років Вадим пише на PHP?",
+      "Jaki backendowy stos zna Vadym?"
+    ]
+  },
+  {
+    "parent_id": "skills-messaging-data",
+    "type": "skills",
+    "project": null,
+    "lang": "en",
+    "text": "Messaging and data skills: Apache Kafka (2+ years, hosted on Confluent), RabbitMQ (5+ years) and WebSockets. Databases and caching: MySQL, Redis and MongoDB (5+ years).",
+    "questions": [
+      "How many years of Kafka and RabbitMQ experience does Vadym have?",
+      "Which databases does Vadym know?",
+      "Does Vadym have experience with message queues?",
+      "Has Vadym used Redis or MongoDB?",
+      "Чи працював Вадим з Kafka та RabbitMQ?",
+      "Czy Vadym pracował z Kafką i RabbitMQ?"
+    ]
+  },
+  {
+    "parent_id": "skills-architecture",
+    "type": "skills",
+    "project": null,
+    "lang": "en",
+    "text": "Architecture skills: microservices, Domain-Driven Design (DDD), Event-Driven Architecture (EDA), Event Sourcing and Spec-Driven Development (SDD). Testing: TDD and BDD with PHPUnit, Behat, Codeception and PhpSpec. He also uses C4 and OpenSpec specifications when designing systems.",
+    "questions": [
+      "What architecture patterns does Vadym use?",
+      "Does Vadym know Event Sourcing and DDD?",
+      "What is Vadym's approach to testing?",
+      "Does Vadym use Spec-Driven Development?",
+      "Які архітектурні підходи використовує Вадим?",
+      "Jakie podejścia architektoniczne stosuje Vadym?"
+    ]
+  },
+  {
+    "parent_id": "skills-devops",
+    "type": "skills",
+    "project": null,
+    "lang": "en",
+    "text": "DevOps and infrastructure skills: Docker (local development and production for his own projects), GitLab CI for all projects at his previous job, Git, Linux (Ubuntu/Debian). Logging and monitoring: Graylog and Grafana. Cloud: Google services only, including BigQuery, Analytics, Translate API and Gemini API.",
+    "questions": [
+      "Does Vadym have DevOps experience?",
+      "Has Vadym worked with Docker and CI/CD?",
+      "Which cloud platforms has Vadym used?",
+      "What monitoring and logging tools does Vadym use?",
+      "Does Vadym know AWS or Kubernetes?",
+      "Який DevOps-досвід має Вадим?",
+      "Jakie doświadczenie DevOps ma Vadym?"
+    ]
+  },
+  {
+    "parent_id": "skills-ai-tools",
+    "type": "skills",
+    "project": null,
+    "lang": "en",
+    "text": "AI tools Vadym uses: Claude Code as the main coding agent, plus Gemini (Antigravity), Codex and Junie (JetBrains). Locally he runs LM Studio with Gemma and Qwen Coder models, and the OpenCode coding agent with local models.",
+    "questions": [
+      "Which AI tools does Vadym use?",
+      "Does Vadym use Claude Code or any AI coding agents?",
+      "Has Vadym worked with local LLMs?",
+      "Which AI coding agents does Vadym know?",
+      "Якими AI-інструментами користується Вадим?",
+      "Z jakich narzędzi AI korzysta Vadym?"
+    ]
+  },
+  {
+    "parent_id": "skills-ai-practices",
+    "type": "skills",
+    "project": null,
+    "lang": "en",
+    "text": "AI engineering practices: Vadym writes custom Claude Code skills, for example one for building custom APIs in a PHP monolith, and uses skills from the superpowers collection. He uses MCP servers for documentation search and browser access, OpenSpec for spec-driven tasks, and reviews all AI-generated code. In his ai-assistant project he built RAG with Qdrant, a LangChain agent on Claude and a custom MCP server.",
+    "questions": [
+      "How does Vadym use AI in development?",
+      "Has Vadym built RAG or AI agents?",
+      "Does Vadym have experience with MCP servers?",
+      "How does Vadym control the quality of AI-generated code?",
+      "Does Vadym write custom skills for AI agents?",
+      "Як Вадим використовує AI у розробці?",
+      "Jak Vadym wykorzystuje AI w programowaniu?"
+    ]
+  },
+  {
+    "parent_id": "skills-learning",
+    "type": "skills",
+    "project": null,
+    "lang": "en",
+    "text": "Technologies Vadym is currently learning: Python with FastAPI, LangChain, and Next.js / React. He has used Python only for scripts so far, and he picks up new stacks quickly, as his recent ai-assistant, fake-admin and kuddo-pilot projects show.",
+    "questions": [
+      "What is Vadym learning now?",
+      "How good is Vadym at Python and FastAPI?",
+      "Which new frameworks is Vadym studying right now?",
+      "Is Vadym learning LangChain?",
+      "Що Вадим вивчає зараз?",
+      "Czego Vadym uczy się obecnie?"
+    ]
+  },
+  {
+    "parent_id": "skills-collaboration",
+    "type": "skills",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Collaboration at Englishdom: Vadym ran weekly backend meetings to solve architecture problems and decide on technical debt. He discussed implementations with the frontend team, joined daily stand-ups with the whole IT department, and met with the business to decide on new logic and ways to implement tasks.",
+    "questions": [
+      "How does Vadym work with a team?",
+      "How does Vadym communicate with the business?",
+      "Does Vadym have soft skills?",
+      "How did Vadym handle technical debt?",
+      "Як Вадим працює в команді та з бізнесом?",
+      "Jak Vadym współpracuje z zespołem i biznesem?"
+    ]
+  },
+  {
+    "parent_id": "experience-englishdom-role",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Englishdom (2013–2026, remote, HQ in Ukraine): Vadym worked as Senior PHP Developer and, from 2022, Lead Backend Architect. The IT team had 12 people across backend, frontend, DevOps and QA, including 2 backend developers. He was responsible for architecture decisions, splitting the monolith into microservices, code review, task estimation and communication with the business.",
+    "questions": [
+      "Where did Vadym work last?",
+      "What was Vadym's role at Englishdom?",
+      "How big was Vadym's team?",
+      "What was Vadym responsible for at Englishdom?",
+      "Has Vadym worked as a Lead Backend Architect?",
+      "Де востаннє працював Вадим і ким?",
+      "Gdzie ostatnio pracował Vadym i na jakim stanowisku?"
+    ]
+  },
+  {
+    "parent_id": "experience-englishdom-context",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Englishdom is an online English-learning platform founded in 2010, with 75,000+ students and teachers. In recent years Vadym's role grew towards close work with the business to ship features fast, and many AI-based process automation tasks. His work there ended in 2026 because of company downsizing.",
+    "questions": [
+      "What is Englishdom?",
+      "Why did Vadym leave Englishdom?",
+      "How did Vadym's role change over the years?",
+      "Is Vadym currently employed?",
+      "Чому Вадим звільнився з Englishdom?",
+      "Dlaczego Vadym odszedł z Englishdom?"
+    ]
+  },
+  {
+    "parent_id": "experience-englishdom-products",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Englishdom products: Vadym developed the entire backend and all APIs behind ED Words (vocabulary app), ED Class (lessons with a teacher) and ReadEd (AI reading bot). The AI dictionary and Pronunciation AI were built on the frontend and Node.js, where he only consulted on the database choice.",
+    "questions": [
+      "Which Englishdom products did Vadym build?",
+      "Did Vadym work on ED Words or ReadEd?",
+      "Did Vadym build the AI features at Englishdom?",
+      "What APIs did Vadym develop?",
+      "Які продукти Englishdom розробляв Вадим?",
+      "Które produkty Englishdom tworzył Vadym?"
+    ]
+  },
+  {
+    "parent_id": "experience-payments-service",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Payments service at Englishdom: Vadym designed a standalone service for payments, subscriptions, auto-renewals and recurring billing. It connects 5 payment providers (Platon, ecommpay, WayForPay, PayU and others), handles about 50 payments and 20–50 subscription renewals per day, and serves about 100 packages priced in USD, EUR and UAH. It replaced monolith code that could not add currencies, limited the number of packages and could not be shared between services.",
+    "questions": [
+      "Has Vadym built a payment system?",
+      "Which payment providers has Vadym integrated?",
+      "How many payments did Vadym's service handle?",
+      "Has Vadym worked with subscriptions and recurring billing?",
+      "Why was a separate payments service needed?",
+      "Чи будував Вадим платіжну систему?",
+      "Czy Vadym zbudował system płatności?"
+    ]
+  },
+  {
+    "parent_id": "experience-payments-results",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Payments service results: Vadym considers it his most important achievement for the business. It became more reliable, transparent and flexible: packages, currencies and prices are now managed in an admin panel without developers. A full per-user log tracks every step from invoice to lessons credited after payment. The same service also processes AllRight Pro payments (about 15 packages in EUR, PLN, RON and USD via ecommpay and PayU).",
+    "questions": [
+      "What is Vadym's biggest achievement?",
+      "What were the results of the payments service?",
+      "How flexible is the payments service?",
+      "Did the payments service support AllRight Pro?",
+      "Яке найбільше досягнення Вадима?",
+      "Jakie jest największe osiągnięcie Vadyma?"
+    ]
+  },
+  {
+    "parent_id": "experience-payments-incident",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Payments migration incident: when Englishdom moved to the new payments service, the lesson-charge history of old users (more than 5 million) was not fully migrated and had to be transferred again. Vadym's takeaway: data migrations of this size need more careful planning.",
+    "questions": [
+      "Tell me about a difficult incident Vadym faced.",
+      "Has Vadym had a failed project or migration?",
+      "What lessons has Vadym learned from mistakes?",
+      "Has Vadym done large data migrations?",
+      "Розкажи про складну помилку чи інцидент Вадима.",
+      "Opowiedz o trudnym incydencie lub błędzie Vadyma."
+    ]
+  },
+  {
+    "parent_id": "experience-crm-before",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Creatio CRM integration, before: events went to RabbitMQ, and a consumer made 2–3 or more Creatio API calls per event (find, update or create a contact, more for leads and payments). Each event took several seconds; 20,000–80,000 events per day produced 80,000–150,000 API calls and the queue sometimes backed up for minutes. Event ordering per user was also hard to guarantee in that design.",
+    "questions": [
+      "What problem did Vadym solve with the CRM integration?",
+      "How did the old Creatio integration work?",
+      "Why was the CRM integration slow?",
+      "How many CRM events per day did Englishdom process?",
+      "Як працювала стара інтеграція з Creatio CRM?",
+      "Jak działała stara integracja z Creatio CRM?"
+    ]
+  },
+  {
+    "parent_id": "experience-crm-after",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Creatio CRM integration, after: Vadym redesigned it around Creatio webhooks and Kafka, built as a high-throughput asynchronous PHP + Swoole microservice. Any service publishes an event to Kafka; the consumer validates it against a schema, enriches missing data such as the user's phone, converts it to an agreed JSON format and sends one POST per event. Speed and stability improved by tens of times: one consumer keeps up with the load that 8 monolith consumers sometimes could not.",
+    "questions": [
+      "How did Vadym redesign the Creatio CRM integration?",
+      "What were the results of the CRM integration?",
+      "Has Vadym built high-load integrations?",
+      "How did Vadym use Swoole and Kafka for CRM sync?",
+      "Has Vadym worked with Creatio CRM?",
+      "Як Вадим перепроєктував інтеграцію з Creatio?",
+      "Jak Vadym przeprojektował integrację z Creatio?"
+    ]
+  },
+  {
+    "parent_id": "experience-kafka-eda",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Event-driven architecture at Englishdom: Vadym built a cross-service Kafka messaging layer used by 5 services (payments, CRM events, scheduling, the Englishdom monolith and AllRight Pro), carrying up to 500,000 messages per day. About 70% of events still ran on the older RabbitMQ setup. Kafka was hosted on Confluent to avoid running its own infrastructure.",
+    "questions": [
+      "How did Vadym use Kafka at Englishdom?",
+      "How many messages per day did the Kafka layer handle?",
+      "Has Vadym built an event-driven architecture?",
+      "Which services used Kafka at Englishdom?",
+      "Як Вадим використовував Kafka в Englishdom?",
+      "Jak Vadym używał Kafki w Englishdom?"
+    ]
+  },
+  {
+    "parent_id": "experience-kafka-library",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Shared domain-events library: Vadym created an internal PHP library with shared domain objects and interfaces, used by several internal projects. A producer fills an object, serializes it to JSON and publishes it to Kafka; a consumer deserializes it back into the same object. Built-in JSON validation keeps invalid messages, which could not be parsed later, out of Kafka.",
+    "questions": [
+      "What is the shared domain-events library?",
+      "How did services share domain objects over Kafka?",
+      "How did Vadym prevent invalid messages in Kafka?",
+      "Що таке спільна бібліотека domain events?",
+      "Czym jest współdzielona biblioteka domain events?"
+    ]
+  },
+  {
+    "parent_id": "experience-microservices",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Monolith to microservices at Englishdom: the monolith was inflexible and ran on outdated PHP 7.3, so Vadym extracted the payments, scheduling and dictionary services, using Mezzio, DDD and Event Sourcing. The result was faster, independent releases, independent development of each service and more flexibility.",
+    "questions": [
+      "Has Vadym split a monolith into microservices?",
+      "Which services did Vadym extract from the monolith?",
+      "Why did Englishdom move to microservices?",
+      "What did microservices give the team?",
+      "Чи розбивав Вадим моноліт на мікросервіси?",
+      "Czy Vadym podzielił monolit na mikroserwisy?"
+    ]
+  },
+  {
+    "parent_id": "experience-allright-pro",
+    "type": "experience",
+    "project": "allright-pro",
+    "lang": "en",
+    "text": "AllRight Pro: Vadym architected and launched the whole backend of this MVP on Symfony and API Platform within a few months. It is a feature-limited version of Englishdom for the European market, built separately because the Englishdom monolith lacked multi-language support and had payments hard-coded for Ukraine.",
+    "questions": [
+      "What is AllRight Pro?",
+      "Has Vadym built an MVP from scratch?",
+      "How fast did Vadym build the AllRight Pro backend?",
+      "Why was AllRight Pro built separately from Englishdom?",
+      "Що таке AllRight Pro?",
+      "Czym jest AllRight Pro?"
+    ]
+  },
+  {
+    "parent_id": "experience-quality",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "Quality practices at Englishdom: the new scheduling service was built fully with Spec-Driven Development, starting from specs and design. The payments service relied on BDD with Behat plus unit tests, and GitLab CI ran tests on every merge, so releases got faster because QA no longer checked these cases by hand. With all Docker images in a registry, a developer can set up the project from scratch in about an hour.",
+    "questions": [
+      "How did Vadym ensure code quality?",
+      "Has Vadym used BDD or Behat in production?",
+      "How did testing speed up releases?",
+      "Як Вадим забезпечував якість коду?",
+      "Jak Vadym dbał o jakość kodu?"
+    ]
+  },
+  {
+    "parent_id": "experience-ai-support-chatbot",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "AI support chatbot at Englishdom: Vadym built an AI chatbot for messengers that answers customer questions about Englishdom, including FAQ. It took over more than 60% of customer questions from the support team.",
+    "questions": [
+      "Has Vadym built an AI chatbot for customers?",
+      "What results did the support chatbot achieve?",
+      "How much support work did AI automate?",
+      "Has Vadym automated customer support with AI?",
+      "Чи будував Вадим AI-чатбот для підтримки клієнтів?",
+      "Czy Vadym zbudował chatbota AI do obsługi klientów?"
+    ]
+  },
+  {
+    "parent_id": "experience-ai-wiki",
+    "type": "experience",
+    "project": "englishdom",
+    "lang": "en",
+    "text": "AI wiki at Englishdom: Vadym built an internal AI knowledge base about the platform, built from scanned source code and partly from AI-generated spec documentation. About 50 people from support and business used it to ask how the system works. It made knowledge several times easier to reach: no more searching old specs in Confluence or asking developers about legacy features.",
+    "questions": [
+      "What is the AI wiki Vadym built?",
+      "How many people used the AI wiki?",
+      "How did the AI wiki help support and business?",
+      "Has Vadym built an internal AI knowledge base?",
+      "Що таке AI wiki, яку створив Вадим?",
+      "Czym jest AI wiki stworzona przez Vadyma?"
+    ]
+  },
+  {
+    "parent_id": "experience-everlution",
+    "type": "experience",
+    "project": null,
+    "lang": "en",
+    "text": "Everlution (2011–2013, Dnipro, Ukraine): Vadym was a Senior PHP Developer and team leader assistant, leading a team of 2 backend developers and 1 QA. He built web applications and microservices with Zend Framework 1/2 and Zend Expressive (Mezzio) and standardized dependency management and coding practices. There he grew professionally, mastered Zend Framework 2, passed the Zend certification and saw how important education platforms are.",
+    "questions": [
+      "What did Vadym do at Everlution?",
+      "How many people did Vadym lead at Everlution?",
+      "What did Vadym do before Englishdom?",
+      "Що робив Вадим в Everlution?",
+      "Co robił Vadym w Everlution?"
+    ]
+  },
+  {
+    "parent_id": "experience-early-career",
+    "type": "experience",
+    "project": null,
+    "lang": "en",
+    "text": "Early career: at Exigen (2009–2011) Vadym built an internal knowledge management system based on ontologies and introduced automated testing, CI and version control practices. At ProxyStep (2008–2009) he built web portals for international clients, including a French insurance company.",
+    "questions": [
+      "Where did Vadym start his career?",
+      "What did Vadym do at Exigen?",
+      "What did Vadym do at ProxyStep?",
+      "Has Vadym worked with international clients?",
+      "З чого Вадим починав кар'єру?",
+      "Od czego Vadym zaczynał karierę?"
+    ]
+  },
+  {
+    "parent_id": "project-ai-assistant-overview",
+    "type": "project",
+    "project": "ai-assistant",
+    "lang": "en",
+    "text": "ai-assistant: Vadym's main current project and the AI chat on his portfolio site vadymleontiev.dev. It started as a demo for learning new technologies and became his personal AI assistant. A chatbot sends the conversation to an agent on Claude, which answers only from FAQ data and user data. Code: github.com/newage/ai-assistant.",
+    "questions": [
+      "What is ai-assistant?",
+      "What is Vadym's main project?",
+      "How does the chat on vadymleontiev.dev work?",
+      "Where can I see the ai-assistant code?",
+      "Why did Vadym build ai-assistant?",
+      "Що таке ai-assistant?",
+      "Czym jest ai-assistant?"
+    ]
+  },
+  {
+    "parent_id": "project-ai-assistant-architecture",
+    "type": "project",
+    "project": "ai-assistant",
+    "lang": "en",
+    "text": "ai-assistant architecture: an ai-service (Python, FastAPI) is the only public endpoint and accepts POST /chat with the conversation history. A LangChain agent on Claude Haiku 5.5 decides which tools to call: search_faq queries Qdrant with local multilingual-e5-large embeddings, and user-data tools go through an MCP server. If no tool returns data, the service replies with a fixed refusal instead of the model's answer.",
+    "questions": [
+      "What is the architecture of ai-assistant?",
+      "How does ai-assistant answer questions?",
+      "Which LLM and embeddings does ai-assistant use?",
+      "What happens when ai-assistant has no data?",
+      "How does RAG work in ai-assistant?",
+      "Яка архітектура ai-assistant?",
+      "Jaka jest architektura ai-assistant?"
+    ]
+  },
+  {
+    "parent_id": "project-ai-assistant-mcp",
+    "type": "project",
+    "project": "ai-assistant",
+    "lang": "en",
+    "text": "ai-assistant MCP server: written in PHP 8.3 with Swoole and a hand-written JSON-RPC MCP implementation, reading MySQL through a SELECT-only account. Vadym chose Python for the agent because it supports RAG out of the box, and PHP for MCP to show how existing PHP systems can expose data to AI agents. Swoole keeps the service fast, which matters for a chat.",
+    "questions": [
+      "What does the MCP server in ai-assistant do?",
+      "Why is the MCP server written in PHP?",
+      "Why did Vadym choose Python for the agent?",
+      "Why does ai-assistant use Swoole?",
+      "Що робить MCP-сервер в ai-assistant?",
+      "Co robi serwer MCP w ai-assistant?"
+    ]
+  },
+  {
+    "parent_id": "project-ai-assistant-cost",
+    "type": "project",
+    "project": "ai-assistant",
+    "lang": "en",
+    "text": "ai-assistant cost: one chat message triggers one LLM call to Claude Haiku 5.5 with effort set to low, with up to about 1,000 input tokens and about 200 output tokens. At $0.10 per million input tokens and $0.50 per million output tokens, that is roughly $0.0002 per message. Answer quality has been checked manually.",
+    "questions": [
+      "How much does one ai-assistant answer cost?",
+      "Is ai-assistant expensive to run?",
+      "How many tokens does ai-assistant use per message?",
+      "How is answer quality checked in ai-assistant?",
+      "Скільки коштує одна відповідь ai-assistant?",
+      "Ile kosztuje jedna odpowiedź ai-assistant?"
+    ]
+  },
+  {
+    "parent_id": "project-ai-assistant-process",
+    "type": "project",
+    "project": "ai-assistant",
+    "lang": "en",
+    "text": "ai-assistant development process: all code was written by the Claude Code agent under Vadym's direction. He first designed a decision log with his own skill plus superpowers skills, then used openspec:propose to split the work into tasks for the agent. The repository keeps OpenSpec specs, a decision log, CLAUDE.md and agent skills.",
+    "questions": [
+      "How was ai-assistant developed?",
+      "Was ai-assistant written by AI?",
+      "How does Vadym work with Claude Code on a project?",
+      "How does Vadym use OpenSpec?",
+      "Як розроблявся ai-assistant?",
+      "Jak powstawał ai-assistant?"
+    ]
+  },
+  {
+    "parent_id": "project-ai-assistant-quality",
+    "type": "project",
+    "project": "ai-assistant",
+    "lang": "en",
+    "text": "ai-assistant quality: 77 tests in pytest and PHPUnit cover the MCP protocol, the agent, the tools and logging. Both services write JSON logs with a shared X-Request-ID for tracing. The whole stack starts with one docker compose up; the frontend is hosted on Cloudflare and the backend host (Hetzner, AWS or Google Cloud) is being chosen.",
+    "questions": [
+      "How is ai-assistant tested?",
+      "How many tests does ai-assistant have?",
+      "How is ai-assistant deployed?",
+      "How are logs and tracing done in ai-assistant?",
+      "Як тестується ai-assistant?",
+      "Jak testowany jest ai-assistant?"
+    ]
+  },
+  {
+    "parent_id": "project-fake-admin-overview",
+    "type": "project",
+    "project": "fake-admin",
+    "lang": "en",
+    "text": "fake-admin: a learning project by Vadym to master new technologies, fully written with AI while testing skills for decision logs and task planning. It is an admin panel over data from about 5,000 fake sensors, with OAuth and a super-admin role. Stack: PHP 8.4 + Mezzio, Doctrine Migrations, Vite + React + TypeScript, Docker; it runs locally only.",
+    "questions": [
+      "What is fake-admin?",
+      "Which stack does fake-admin use?",
+      "Is fake-admin a real production project?",
+      "Which frontend does the fake-admin panel use?",
+      "Що таке fake-admin?",
+      "Czym jest fake-admin?"
+    ]
+  },
+  {
+    "parent_id": "project-kuddo-pilot-overview",
+    "type": "project",
+    "project": "kuddo-pilot",
+    "lang": "en",
+    "text": "kuddo-pilot: a personal learning project by Vadym to understand and practice a modern web and AI stack. It is a chat for a child with AI teachers on Gemini, with Google sign-in, roles, chat history with summaries, a child profile and an admin panel. Stack: Next.js 16, React 19, Auth.js, Drizzle + PostgreSQL, Vercel AI SDK, Tailwind + shadcn/ui.",
+    "questions": [
+      "What is kuddo-pilot?",
+      "Which stack does kuddo-pilot use?",
+      "Has Vadym built an app with Google sign-in and Drizzle?",
+      "Has Vadym built anything with Gemini?",
+      "Що таке kuddo-pilot?",
+      "Czym jest kuddo-pilot?"
+    ]
+  },
+  {
+    "parent_id": "project-github-older-overview",
+    "type": "project",
+    "project": "github-older",
+    "lang": "en",
+    "text": "Older open-source projects on github.com/newage: libraries and skeletons for Zend Framework 1/2/3 from 2013–2019, such as zf2-extend, zf2-simple-orm, console-tools and migrature, plus AudioManager (cloud TTS library) and votocracy (voting service on Mezzio). Vadym's public contribution to other open-source projects is PHP-po-parser.",
+    "questions": [
+      "What other projects does Vadym have on GitHub?",
+      "Has Vadym contributed to open source?",
+      "What did Vadym build with Zend Framework?",
+      "Where is Vadym's GitHub?",
+      "Які ще проєкти Вадима є на GitHub?",
+      "Jakie inne projekty Vadyma są na GitHubie?"
+    ]
+  },
+  {
+    "parent_id": "contact-details",
+    "type": "contact",
+    "project": null,
+    "lang": "en",
+    "text": "Contact Vadym: website vadymleontiev.dev, email hello@vadymleontiev.dev, LinkedIn linkedin.com/in/vadim-leontiev-a7035938, GitHub github.com/newage. Recommendations from colleagues are on his LinkedIn profile.",
+    "questions": [
+      "How can I contact Vadym?",
+      "What is Vadym's email?",
+      "Where is Vadym's LinkedIn?",
+      "Does Vadym have recommendations?",
+      "What is Vadym's website?",
+      "Як зв'язатися з Вадимом?",
+      "Який email у Вадима?",
+      "Jak skontaktować się z Vadymem?"
+    ]
+  },
+  {
+    "parent_id": "contact-availability",
+    "type": "contact",
+    "project": null,
+    "lang": "en",
+    "text": "Availability: Vadym is open to remote work, with office visits in Warsaw possible to meet the team. He works on a B2B contract through a business incubator, holds a long-term resident card in Poland and can start right after signing an offer.",
+    "questions": [
+      "Is Vadym available for work?",
+      "Does Vadym work remotely?",
+      "Can Vadym work on a B2B contract?",
+      "Does Vadym have a work permit in Poland?",
+      "When can Vadym start?",
+      "Чи доступний Вадим для роботи та коли може почати?",
+      "Czy Vadym jest dostępny i kiedy może zacząć?"
+    ]
+  },
+  {
+    "parent_id": "contact-languages",
+    "type": "contact",
+    "project": null,
+    "lang": "en",
+    "text": "Languages: Vadym speaks Ukrainian (native), Polish (communicative, about B1+) and English (B1). In meetings he uses transcription and translation tools so that no agreement is missed.",
+    "questions": [
+      "What languages does Vadym speak?",
+      "What is Vadym's English level?",
+      "Does Vadym speak Polish?",
+      "Can Vadym work in a Polish-speaking team?",
+      "Якими мовами розмовляє Вадим?",
+      "Jakimi językami mówi Vadym?",
+      "Czy mówi Vadym po Polsku?",
+      "Czy może Vadym pracować w polskim zespole?"
+    ]
+  }
+]
