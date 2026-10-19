@@ -14,7 +14,13 @@
       "What technologies does Vadym know?",
       "Хто такий Вадим Леонт'єв?",
       "Скільки років досвіду має Вадим?",
-      "Kim jest Vadym Leontiev?"
+      "Kim jest Vadym Leontiev?",
+      "Розкажи про нього коротко",
+      "Де він живе і ким працює?",
+      "Kim on jest?",
+      "Opowiedz mi o nim w kilku zdaniach",
+      "Ile lat doświadczenia ma ten programista?",
+      "Gdzie mieszka i czym się zajmuje?"
     ]
   },
   {
@@ -29,7 +35,13 @@
       "Does Vadym want to manage a team?",
       "Is Vadym a backend developer or an AI engineer?",
       "Яку роль шукає Вадим?",
-      "Jakiej roli szuka Vadym?"
+      "Jakiej roli szuka Vadym?",
+      "Яку роботу він шукає?",
+      "Чи хоче він керувати командою?",
+      "Jakiej pracy szuka?",
+      "Czy chce zarządzać ludźmi?",
+      "Jak sam siebie opisuje?",
+      "Woli być programistą czy inżynierem AI?"
     ]
   },
   {
@@ -44,7 +56,13 @@
       "How fast does Vadym learn new technologies?",
       "Why should we hire Vadym?",
       "Які сильні сторони має Вадим?",
-      "Jakie są mocne strony Vadyma?"
+      "Jakie są mocne strony Vadyma?",
+      "Чим він кращий за інших?",
+      "Чому варто його найняти?",
+      "Dlaczego warto go zatrudnić?",
+      "W czym jest najlepszy?",
+      "Czy szybko się uczy?",
+      "Co go wyróżnia?"
     ]
   },
   {
@@ -60,7 +78,13 @@
       "What kind of company does Vadym prefer?",
       "What kind of work does Vadym not want?",
       "В яких галузях Вадим хоче працювати?",
-      "W jakich branżach Vadym chce pracować?"
+      "W jakich branżach Vadym chce pracować?",
+      "У якій сфері він хоче працювати?",
+      "Чи піде він у банк?",
+      "W jakiej branży chce pracować?",
+      "Czy poszedłby do banku?",
+      "Czy lubi pracę z legacy?",
+      "Jaka firma byłaby dla niego idealna?"
     ]
   },
   {
@@ -76,7 +100,8 @@
       "Where did Vadym study?",
       "Яка освіта у Вадима?",
       "Які сертифікати Zend має Вадим?",
-      "Jakie wykształcenie ma Vadym?"
+      "Jakie certyfikaty Zend posiada?",
+      "Czy skończył studia wyższe?"
     ]
   },
   {
@@ -93,7 +118,16 @@
       "Does Vadym know Python or Node.js?",
       "Який бекенд-стек знає Вадим?",
       "Скільки років Вадим пише на PHP?",
-      "Jaki backendowy stos zna Vadym?"
+      "Jaki backendowy stos zna Vadym?",
+      "Який його технологічний стек?",
+      "Які мови програмування він знає?",
+      "Скільки в нього досвіду з PHP?",
+      "Чи вміє він писати на Python?",
+      "Jakie języki zna?",
+      "Ile lat programuje w PHP?",
+      "Czy zna Symfony?",
+      "Czy umie pisać w Pythonie?",
+      "Jaki ma stack technologiczny?"
     ]
   },
   {
@@ -108,7 +142,13 @@
       "Does Vadym have experience with message queues?",
       "Has Vadym used Redis or MongoDB?",
       "Чи працював Вадим з Kafka та RabbitMQ?",
-      "Czy Vadym pracował z Kafką i RabbitMQ?"
+      "Czy Vadym pracował z Kafką i RabbitMQ?",
+      "З якими базами даних він працював?",
+      "Чи має він досвід із чергами повідомлень?",
+      "Z jakimi bazami danych pracował?",
+      "Czy zna Kafkę?",
+      "Czy używał RabbitMQ?",
+      "Czy ma doświadczenie z kolejkami wiadomości?"
     ]
   },
   {
@@ -123,7 +163,13 @@
       "What is Vadym's approach to testing?",
       "Does Vadym use Spec-Driven Development?",
       "Які архітектурні підходи використовує Вадим?",
-      "Jakie podejścia architektoniczne stosuje Vadym?"
+      "Jakie podejścia architektoniczne stosuje Vadym?",
+      "Які архітектурні патерни він використовує?",
+      "Чи вміє він писати тести?",
+      "Jakie wzorce architektoniczne stosuje?",
+      "Czy zna DDD?",
+      "Jak podchodzi do testowania?",
+      "Czy projektuje systemy od podstaw?"
     ]
   },
   {
@@ -139,7 +185,13 @@
       "What monitoring and logging tools does Vadym use?",
       "Does Vadym know AWS or Kubernetes?",
       "Який DevOps-досвід має Вадим?",
-      "Jakie doświadczenie DevOps ma Vadym?"
+      "Jakie doświadczenie DevOps ma Vadym?",
+      "Чи вміє він працювати з Docker?",
+      "Яку хмару він використовував?",
+      "Czy zna Dockera?",
+      "Czy ma doświadczenie z CI/CD?",
+      "Z jakiej chmury korzystał?",
+      "Czy zna AWS?"
     ]
   },
   {
@@ -158,7 +210,13 @@
       "Has Vadym built or used anything with Gemini?",
       "Does Vadym run local models like Gemma or Qwen?",
       "Чи працював Вадим із локальними LLM?",
-      "Czy Vadym pracował z lokalnymi modelami LLM?"
+      "Czy Vadym pracował z lokalnymi modelami LLM?",
+      "Які AI-інструменти він використовує?",
+      "Чи працював він з локальними моделями?",
+      "Z jakich narzędzi AI korzysta na co dzień?",
+      "Czy używa Claude Code?",
+      "Czy uruchamia modele lokalnie?",
+      "Jakie agenty AI do kodowania zna?"
     ]
   },
   {
@@ -178,7 +236,15 @@
       "Does Vadym use Gemini, Codex or other AI models in production work?",
       "Has Vadym built anything with RAG, Qdrant or LangChain?",
       "Чи будував Вадим RAG або AI-агентів?",
-      "Czy Vadym budował RAG lub agentów AI?"
+      "Czy Vadym budował RAG lub agentów AI?",
+      "Як він працює з AI в розробці?",
+      "Чи будував він RAG-системи?",
+      "Чи перевіряє він код від AI?",
+      "Jak pracuje z AI?",
+      "Czy budował systemy RAG?",
+      "Czy sprawdza kod wygenerowany przez AI?",
+      "Czy zna MCP?",
+      "Czy pisze własne skille dla agentów?"
     ]
   },
   {
@@ -193,7 +259,13 @@
       "Which new frameworks is Vadym studying right now?",
       "Is Vadym learning LangChain?",
       "Що Вадим вивчає зараз?",
-      "Czego Vadym uczy się obecnie?"
+      "Czego Vadym uczy się obecnie?",
+      "Що він зараз вивчає?",
+      "Чи знає він Python?",
+      "Czego się teraz uczy?",
+      "Czy zna Pythona i FastAPI?",
+      "Jakie nowe technologie poznaje?",
+      "Czy uczy się Reacta?"
     ]
   },
   {
@@ -208,7 +280,13 @@
       "Does Vadym have soft skills?",
       "How did Vadym handle technical debt?",
       "Як Вадим працює в команді та з бізнесом?",
-      "Jak Vadym współpracuje z zespołem i biznesem?"
+      "Jak Vadym współpracuje z zespołem i biznesem?",
+      "Як він працює в команді?",
+      "Чи вміє він спілкуватися з бізнесом?",
+      "Jak pracuje w zespole?",
+      "Czy potrafi rozmawiać z biznesem?",
+      "Jak radzi sobie z długiem technicznym?",
+      "Czy ma dobre umiejętności miękkie?"
     ]
   },
   {
@@ -224,7 +302,13 @@
       "What was Vadym responsible for at Englishdom?",
       "Has Vadym worked as a Lead Backend Architect?",
       "Де востаннє працював Вадим і ким?",
-      "Gdzie ostatnio pracował Vadym i na jakim stanowisku?"
+      "Gdzie ostatnio pracował Vadym i na jakim stanowisku?",
+      "Де він працював останнім часом?",
+      "Яка була його посада?",
+      "Gdzie ostatnio pracował?",
+      "Na jakim stanowisku?",
+      "Jak duży był jego zespół?",
+      "Za co odpowiadał w poprzedniej firmie?"
     ]
   },
   {
@@ -239,7 +323,13 @@
       "How did Vadym's role change over the years?",
       "Is Vadym currently employed?",
       "Чому Вадим звільнився з Englishdom?",
-      "Dlaczego Vadym odszedł z Englishdom?"
+      "Dlaczego Vadym odszedł z Englishdom?",
+      "Чому він пішов із попередньої роботи?",
+      "Чи працює він зараз?",
+      "Dlaczego zakończył pracę w poprzedniej firmie?",
+      "Czy teraz pracuje?",
+      "Czym zajmuje się firma, w której pracował?",
+      "Jak zmieniała się jego rola?"
     ]
   },
   {
@@ -254,7 +344,13 @@
       "Did Vadym build the AI features at Englishdom?",
       "What APIs did Vadym develop?",
       "Які продукти Englishdom розробляв Вадим?",
-      "Które produkty Englishdom tworzył Vadym?"
+      "Które produkty Englishdom tworzył Vadym?",
+      "Які продукти він розробляв?",
+      "Чи робив він AI-функції?",
+      "Jakie produkty tworzył?",
+      "Czy budował funkcje AI?",
+      "Za jakie API odpowiadał?",
+      "Czy pracował nad ED Words lub ReadEd?"
     ]
   },
   {
@@ -270,7 +366,13 @@
       "Has Vadym worked with subscriptions and recurring billing?",
       "Why was a separate payments service needed?",
       "Чи будував Вадим платіжну систему?",
-      "Czy Vadym zbudował system płatności?"
+      "Czy Vadym zbudował system płatności?",
+      "Чи робив він платіжну систему?",
+      "З якими платіжними провайдерами він працював?",
+      "Czy robił system płatności?",
+      "Z jakimi dostawcami płatności pracował?",
+      "Czy ma doświadczenie z subskrypcjami?",
+      "Ile płatności obsługiwał jego serwis?"
     ]
   },
   {
@@ -285,7 +387,13 @@
       "How flexible is the payments service?",
       "Did the payments service support AllRight Pro?",
       "Яке найбільше досягнення Вадима?",
-      "Jakie jest największe osiągnięcie Vadyma?"
+      "Jakie jest największe osiągnięcie Vadyma?",
+      "Яке його головне досягнення?",
+      "Чим він найбільше пишається?",
+      "Jakie jest jego największe osiągnięcie?",
+      "Z czego jest najbardziej dumny?",
+      "Co dał biznesowi serwis płatności?",
+      "Czy płatności można zmieniać bez programistów?"
     ]
   },
   {
@@ -300,7 +408,13 @@
       "What lessons has Vadym learned from mistakes?",
       "Has Vadym done large data migrations?",
       "Розкажи про складну помилку чи інцидент Вадима.",
-      "Opowiedz o trudnym incydencie lub błędzie Vadyma."
+      "Opowiedz o trudnym incydencie lub błędzie Vadyma.",
+      "Чи були в нього невдалі проєкти?",
+      "Яку помилку він зробив і чого навчився?",
+      "Czy zdarzyła mu się porażka w projekcie?",
+      "Jaki błąd popełnił i czego się nauczył?",
+      "Czy robił duże migracje danych?",
+      "Opowiedz o jego trudnym przypadku"
     ]
   },
   {
@@ -315,7 +429,13 @@
       "Why was the CRM integration slow?",
       "How many CRM events per day did Englishdom process?",
       "Як працювала стара інтеграція з Creatio CRM?",
-      "Jak działała stara integracja z Creatio CRM?"
+      "Jak działała stara integracja z Creatio CRM?",
+      "Яку проблему він вирішував з CRM?",
+      "Чому стара інтеграція була повільною?",
+      "Jaki problem rozwiązywał w integracji z CRM?",
+      "Dlaczego stara integracja była wolna?",
+      "Ile zdarzeń dziennie obsługiwał CRM?",
+      "Jak wcześniej działała integracja z Creatio?"
     ]
   },
   {
@@ -331,7 +451,13 @@
       "How did Vadym use Swoole and Kafka for CRM sync?",
       "Has Vadym worked with Creatio CRM?",
       "Як Вадим перепроєктував інтеграцію з Creatio?",
-      "Jak Vadym przeprojektował integrację z Creatio?"
+      "Jak Vadym przeprojektował integrację z Creatio?",
+      "Як він покращив інтеграцію з CRM?",
+      "Чи будував він високонавантажені системи?",
+      "Jak ulepszył integrację z CRM?",
+      "Czy budował systemy wysokiej wydajności?",
+      "Jakie były efekty nowej integracji?",
+      "Czy zna Creatio?"
     ]
   },
   {
@@ -346,7 +472,13 @@
       "Has Vadym built an event-driven architecture?",
       "Which services used Kafka at Englishdom?",
       "Як Вадим використовував Kafka в Englishdom?",
-      "Jak Vadym używał Kafki w Englishdom?"
+      "Jak Vadym używał Kafki w Englishdom?",
+      "Як він використовував Kafka?",
+      "Чи будував він подієву архітектуру?",
+      "Jak używał Kafki?",
+      "Czy budował architekturę zdarzeniową?",
+      "Ile wiadomości dziennie obsługiwała jego warstwa?",
+      "Które serwisy korzystały z Kafki?"
     ]
   },
   {
@@ -366,7 +498,13 @@
       "Як сервіси обмінювалися доменними об'єктами через Kafka?",
       "Як Вадим запобігав невалідним повідомленням у Kafka?",
       "Jak serwisy współdzieliły obiekty domenowe przez Kafkę?",
-      "Jak Vadym zapobiegał nieprawidłowym wiadomościom w Kafce?"
+      "Jak Vadym zapobiegał nieprawidłowym wiadomościom w Kafce?",
+      "Що за бібліотеку він створив для подій?",
+      "Як він захищав Kafka від некоректних повідомлень?",
+      "Jaką bibliotekę stworzył do zdarzeń?",
+      "Jak chronił Kafkę przed błędnymi wiadomościami?",
+      "Jak serwisy współdzieliły jego obiekty domenowe?",
+      "Czy walidował wiadomości JSON?"
     ]
   },
   {
@@ -387,7 +525,13 @@
       "Що дали команді мікросервіси?",
       "Які сервіси Вадим виділив із моноліту?",
       "Co zespołowi dały mikroserwisy?",
-      "Jakie serwisy Vadym wydzielił z monolitu?"
+      "Jakie serwisy Vadym wydzielił z monolitu?",
+      "Чи розділяв він моноліт на мікросервіси?",
+      "Що це дало команді?",
+      "Czy dzielił monolit na mikroserwisy?",
+      "Jakie serwisy wydzielił?",
+      "Dlaczego firma przeszła na mikroserwisy?",
+      "Co to dało zespołowi?"
     ]
   },
   {
@@ -402,7 +546,13 @@
       "How fast did Vadym build the AllRight Pro backend?",
       "Why was AllRight Pro built separately from Englishdom?",
       "Що таке AllRight Pro?",
-      "Czym jest AllRight Pro?"
+      "Czym jest AllRight Pro?",
+      "Що за проєкт AllRight Pro?",
+      "Чи робив він MVP з нуля?",
+      "Czym jest projekt AllRight Pro?",
+      "Czy budował MVP od zera?",
+      "Jak szybko zrobił ten backend?",
+      "Dlaczego powstał osobny produkt?"
     ]
   },
   {
@@ -423,7 +573,13 @@
       "Чи прискорювали тести релізи в Englishdom?",
       "Чи використовував Вадим BDD та Behat?",
       "Czy testy przyspieszyły wydania w Englishdom?",
-      "Czy Vadym używał BDD i Behat?"
+      "Czy Vadym używał BDD i Behat?",
+      "Як він дбав про якість коду?",
+      "Чи використовував він BDD у роботі?",
+      "Jak dbał o jakość kodu?",
+      "Czy stosował BDD w pracy?",
+      "Czy testy przyspieszyły wydania?",
+      "Jak szybko można postawić jego projekt od zera?"
     ]
   },
   {
@@ -444,7 +600,13 @@
       "Яких результатів досяг чат-бот підтримки?",
       "Скільки роботи підтримки автоматизував AI?",
       "Jakie wyniki osiągnął chatbot wsparcia?",
-      "Ile pracy wsparcia zautomatyzowała AI?"
+      "Ile pracy wsparcia zautomatyzowała AI?",
+      "Чи робив він AI-чатбот для клієнтів?",
+      "Скільки питань підтримки забрав бот?",
+      "Czy zbudował chatbota dla klientów?",
+      "Ile zapytań przejął bot?",
+      "Czy zautomatyzował wsparcie za pomocą AI?",
+      "Jakie były wyniki jego chatbota?"
     ]
   },
   {
@@ -465,7 +627,13 @@
       "Чим AI wiki допомогла підтримці та бізнесу?",
       "Скільки людей користувалися AI wiki?",
       "Jak AI wiki pomogła wsparciu i biznesowi?",
-      "Ile osób korzystało z AI wiki?"
+      "Ile osób korzystało z AI wiki?",
+      "Що таке AI wiki, яку він зробив?",
+      "Скільки людей нею користувалися?",
+      "Czym jest AI wiki, którą zrobił?",
+      "Ile osób z niej korzystało?",
+      "Jak pomogła zespołom wsparcia i biznesu?",
+      "Czy zbudował wewnętrzną bazę wiedzy z AI?"
     ]
   },
   {
@@ -479,7 +647,13 @@
       "How many people did Vadym lead at Everlution?",
       "What did Vadym do before Englishdom?",
       "Що робив Вадим в Everlution?",
-      "Co robił Vadym w Everlution?"
+      "Co robił Vadym w Everlution?",
+      "Що він робив до Englishdom?",
+      "Скількома людьми він керував?",
+      "Co robił przed poprzednią firmą?",
+      "Ilu ludzi prowadził?",
+      "Czym zajmował się w Everlution?",
+      "Jakich frameworków tam używał?"
     ]
   },
   {
@@ -494,7 +668,13 @@
       "What did Vadym do at ProxyStep?",
       "Has Vadym worked with international clients?",
       "З чого Вадим починав кар'єру?",
-      "Od czego Vadym zaczynał karierę?"
+      "Od czego Vadym zaczynał karierę?",
+      "З чого він починав кар'єру?",
+      "Чи працював він із міжнародними клієнтами?",
+      "Od czego zaczynał karierę?",
+      "Czy pracował z zagranicznymi klientami?",
+      "Co robił w Exigen?",
+      "Jakie projekty robił na początku?"
     ]
   },
   {
@@ -510,7 +690,13 @@
       "Where can I see the ai-assistant code?",
       "Why did Vadym build ai-assistant?",
       "Що таке ai-assistant?",
-      "Czym jest ai-assistant?"
+      "Czym jest ai-assistant?",
+      "Що це за чат на його сайті?",
+      "Навіщо він створив цей проєкт?",
+      "Czym jest ten czat na jego stronie?",
+      "Po co zbudował ten projekt?",
+      "Gdzie można zobaczyć kod?",
+      "Jak działa ten asystent?"
     ]
   },
   {
@@ -530,7 +716,13 @@
       "Which LLM and which embeddings model does ai-assistant use?",
       "Does ai-assistant use LangChain and Qdrant?",
       "Яку LLM та які embeddings використовує ai-assistant?",
-      "Z jakiego LLM i embeddingów korzysta ai-assistant?"
+      "Z jakiego LLM i embeddingów korzysta ai-assistant?",
+      "Як влаштований цей асистент?",
+      "Яку модель і векторну базу він використав?",
+      "Jak zbudowany jest ten asystent?",
+      "Jakiego modelu użył?",
+      "Z jakiej bazy wektorowej korzysta?",
+      "Co się dzieje, gdy asystent nie ma danych?"
     ]
   },
   {
@@ -545,7 +737,13 @@
       "Why did Vadym choose Python for the agent?",
       "Why does ai-assistant use Swoole?",
       "Що робить MCP-сервер в ai-assistant?",
-      "Co robi serwer MCP w ai-assistant?"
+      "Co robi serwer MCP w ai-assistant?",
+      "Навіщо він написав MCP-сервер на PHP?",
+      "Чому для агента обрав Python?",
+      "Dlaczego napisał serwer MCP w PHP?",
+      "Dlaczego wybrał Pythona dla agenta?",
+      "Po co użył Swoole?",
+      "Co robi ten serwer MCP?"
     ]
   },
   {
@@ -560,7 +758,13 @@
       "How many tokens does ai-assistant use per message?",
       "How is answer quality checked in ai-assistant?",
       "Скільки коштує одна відповідь ai-assistant?",
-      "Ile kosztuje jedna odpowiedź ai-assistant?"
+      "Ile kosztuje jedna odpowiedź ai-assistant?",
+      "Скільки коштує одна відповідь асистента?",
+      "Чи дорого його підтримувати?",
+      "Ile kosztuje jedna odpowiedź asystenta?",
+      "Czy jest drogi w utrzymaniu?",
+      "Ile tokenów zużywa wiadomość?",
+      "Jak sprawdza jakość odpowiedzi?"
     ]
   },
   {
@@ -575,7 +779,13 @@
       "How does Vadym work with Claude Code on a project?",
       "How does Vadym use OpenSpec?",
       "Як розроблявся ai-assistant?",
-      "Jak powstawał ai-assistant?"
+      "Jak powstawał ai-assistant?",
+      "Чи цей проєкт написав AI?",
+      "Як він працював з Claude Code над проєктом?",
+      "Czy ten projekt napisało AI?",
+      "Jak pracował z Claude Code przy tym projekcie?",
+      "Jak używa OpenSpec?",
+      "Jak wyglądał proces tworzenia?"
     ]
   },
   {
@@ -594,7 +804,13 @@
       "How many tests are in ai-assistant and what do they cover?",
       "Where is ai-assistant hosted?",
       "Скільки тестів у ai-assistant?",
-      "Ile testów ma ai-assistant?"
+      "Ile testów ma ai-assistant?",
+      "Як тестується цей проєкт?",
+      "Де він розгорнутий?",
+      "Jak testowany jest ten projekt?",
+      "Ile ma testów?",
+      "Gdzie jest hostowany?",
+      "Jak wygląda logowanie i śledzenie?"
     ]
   },
   {
@@ -609,7 +825,13 @@
       "Is fake-admin a real production project?",
       "Which frontend does the fake-admin panel use?",
       "Що таке fake-admin?",
-      "Czym jest fake-admin?"
+      "Czym jest fake-admin?",
+      "Що це за проєкт з датчиками?",
+      "Чи це робочий проєкт?",
+      "Czym jest projekt z czujnikami?",
+      "Czy to projekt produkcyjny?",
+      "Z jakiego stacku korzysta panel admina?",
+      "Po co go zrobił?"
     ]
   },
   {
@@ -624,7 +846,13 @@
       "Has Vadym built an app with Google sign-in and Drizzle?",
       "Has Vadym built anything with Gemini?",
       "Що таке kuddo-pilot?",
-      "Czym jest kuddo-pilot?"
+      "Czym jest kuddo-pilot?",
+      "Що це за чат для дитини?",
+      "На чому він написаний?",
+      "Czym jest czat dla dziecka?",
+      "W jakim stacku powstał?",
+      "Czy robił aplikację z Gemini?",
+      "Czy zna Next.js?"
     ]
   },
   {
@@ -639,7 +867,13 @@
       "What did Vadym build with Zend Framework?",
       "Where is Vadym's GitHub?",
       "Які ще проєкти Вадима є на GitHub?",
-      "Jakie inne projekty Vadyma są na GitHubie?"
+      "Jakie inne projekty Vadyma są na GitHubie?",
+      "Що ще в нього є на GitHub?",
+      "Чи робив він open source?",
+      "Co jeszcze ma na GitHubie?",
+      "Czy współtworzył open source?",
+      "Co zrobił na Zend Framework?",
+      "Gdzie jest jego GitHub?"
     ]
   },
   {
@@ -656,7 +890,13 @@
       "What is Vadym's website?",
       "Як зв'язатися з Вадимом?",
       "Який email у Вадима?",
-      "Jak skontaktować się z Vadymem?"
+      "Jak skontaktować się z Vadymem?",
+      "Як з ним зв'язатися?",
+      "Де його LinkedIn та email?",
+      "Jak się z nim skontaktować?",
+      "Jaki ma email?",
+      "Gdzie jest jego LinkedIn?",
+      "Czy ma rekomendacje od współpracowników?"
     ]
   },
   {
@@ -672,7 +912,15 @@
       "Does Vadym have a work permit in Poland?",
       "When can Vadym start?",
       "Чи доступний Вадим для роботи та коли може почати?",
-      "Czy Vadym jest dostępny i kiedy może zacząć?"
+      "Czy Vadym jest dostępny i kiedy może zacząć?",
+      "Чи шукає він роботу зараз?",
+      "Коли він може почати?",
+      "Чи може він працювати віддалено?",
+      "Czy jest dostępny do pracy?",
+      "Kiedy może zacząć?",
+      "Czy pracuje zdalnie?",
+      "Czy ma prawo pracy w Polsce?",
+      "Czy współpracuje w modelu B2B?"
     ]
   },
   {
@@ -689,7 +937,13 @@
       "Якими мовами розмовляє Вадим?",
       "Jakimi językami mówi Vadym?",
       "Czy mówi Vadym po Polsku?",
-      "Czy może Vadym pracować w polskim zespole?"
+      "Czy może Vadym pracować w polskim zespole?",
+      "Якими мовами він говорить?",
+      "Який в нього рівень англійської?",
+      "Jakimi językami się posługuje?",
+      "Jaki ma poziom angielskiego?",
+      "Czy mówi po polsku?",
+      "Czy może pracować w polskim zespole?"
     ]
   }
 ]
