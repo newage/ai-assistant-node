@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createApp } from '../src/index.js';
 import { TEXTS } from '../src/messages.js';
+import { createRetrieval } from '../src/retrieval.js';
 
 async function call({ body, raw, limited = false, groups = [{ parentId: 'a', answer: 'AA', score: 0.9 }], searchError, answerError }) {
   const calls = { search: 0, answer: 0, question: null };
@@ -95,4 +96,43 @@ test('502 when Claude fails', async () => {
   const r = await call({ body: { messages: [user('q')] }, answerError: true });
   assert.equal(r.status, 502);
   assert.equal(r.json.reply, TEXTS.failure.en);
+});
+
+async function callWithRerank(rerank) {
+  const calls = { answer: 0 };
+  const index = { searchRecords: async () => ({ result: { hits: [{ _score: 0.9, fields: { parent_id: 'a', answer: 'AA' } }] } }) };
+  const config = { vectorTopK: 10, vectorMinScore: 0.84, rerankModel: 'm', rerankMinScore: 0.5 };
+  const app = createApp({
+    log: () => {},
+    isRateLimited: async () => false,
+    search: createRetrieval(config, index, rerank),
+    answer: async () => (calls.answer++, 'ANSWER'),
+  });
+  const server = app.listen(0);
+  try {
+    const res = await fetch(`http://127.0.0.1:${server.address().port}/chat`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ messages: [user('q')] }),
+    });
+    return { status: res.status, json: await res.json(), calls };
+  } finally {
+    server.close();
+  }
+}
+
+test('200 no data when rerank drops every group, Claude not called', async () => {
+  const r = await callWithRerank(async () => ({ data: [{ index: 0, score: 0.1 }] }));
+  assert.equal(r.status, 200);
+  assert.equal(r.json.reply, TEXTS.noData.en);
+  assert.equal(r.calls.answer, 0);
+});
+
+test('502 when rerank fails, Claude not called', async () => {
+  const r = await callWithRerank(async () => {
+    throw new Error('rerank down');
+  });
+  assert.equal(r.status, 502);
+  assert.equal(r.json.reply, TEXTS.failure.en);
+  assert.equal(r.calls.answer, 0);
 });

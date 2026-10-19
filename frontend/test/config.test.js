@@ -22,3 +22,13 @@ test('empty CLAUDE_EFFORT stays empty', () => {
   assert.equal(loadConfig({ CLAUDE_EFFORT: '' }).claudeEffort, '');
   assert.equal(loadConfig({ CLAUDE_EFFORT: 'low' }).claudeEffort, 'low');
 });
+
+test('rerank is off by default and parsed from env', () => {
+  const d = loadConfig({});
+  assert.equal(d.rerankModel, '');
+  assert.equal(d.rerankMinScore, 0.5);
+  const c = loadConfig({ RERANK_MODEL: 'bge-reranker-v2-m3', RERANK_MIN_SCORE: '0.3' });
+  assert.equal(c.rerankModel, 'bge-reranker-v2-m3');
+  assert.equal(c.rerankMinScore, 0.3);
+  assert.equal(loadConfig({ RERANK_MODEL: '', RERANK_MIN_SCORE: '' }).rerankMinScore, 0.5);
+});

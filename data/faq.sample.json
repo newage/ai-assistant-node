@@ -154,7 +154,11 @@
       "Has Vadym worked with local LLMs?",
       "Which AI coding agents does Vadym know?",
       "Якими AI-інструментами користується Вадим?",
-      "Z jakich narzędzi AI korzysta Vadym?"
+      "Z jakich narzędzi AI korzysta Vadym?",
+      "Has Vadym built or used anything with Gemini?",
+      "Does Vadym run local models like Gemma or Qwen?",
+      "Чи працював Вадим із локальними LLM?",
+      "Czy Vadym pracował z lokalnymi modelami LLM?"
     ]
   },
   {
@@ -170,7 +174,11 @@
       "How does Vadym control the quality of AI-generated code?",
       "Does Vadym write custom skills for AI agents?",
       "Як Вадим використовує AI у розробці?",
-      "Jak Vadym wykorzystuje AI w programowaniu?"
+      "Jak Vadym wykorzystuje AI w programowaniu?",
+      "Does Vadym use Gemini, Codex or other AI models in production work?",
+      "Has Vadym built anything with RAG, Qdrant or LangChain?",
+      "Чи будував Вадим RAG або AI-агентів?",
+      "Czy Vadym budował RAG lub agentów AI?"
     ]
   },
   {
@@ -352,7 +360,13 @@
       "How did services share domain objects over Kafka?",
       "How did Vadym prevent invalid messages in Kafka?",
       "Що таке спільна бібліотека domain events?",
-      "Czym jest współdzielona biblioteka domain events?"
+      "Czym jest współdzielona biblioteka domain events?",
+      "How do producers and consumers share objects through Kafka in Vadym's library?",
+      "How does JSON validation protect Kafka from bad messages?",
+      "Як сервіси обмінювалися доменними об'єктами через Kafka?",
+      "Як Вадим запобігав невалідним повідомленням у Kafka?",
+      "Jak serwisy współdzieliły obiekty domenowe przez Kafkę?",
+      "Jak Vadym zapobiegał nieprawidłowym wiadomościom w Kafce?"
     ]
   },
   {
@@ -367,7 +381,13 @@
       "Why did Englishdom move to microservices?",
       "What did microservices give the team?",
       "Чи розбивав Вадим моноліт на мікросервіси?",
-      "Czy Vadym podzielił monolit na mikroserwisy?"
+      "Czy Vadym podzielił monolit na mikroserwisy?",
+      "What benefits did the microservices bring to Englishdom?",
+      "Why was the Englishdom monolith a problem?",
+      "Що дали команді мікросервіси?",
+      "Які сервіси Вадим виділив із моноліту?",
+      "Co zespołowi dały mikroserwisy?",
+      "Jakie serwisy Vadym wydzielił z monolitu?"
     ]
   },
   {
@@ -396,7 +416,14 @@
       "Has Vadym used BDD or Behat in production?",
       "How did testing speed up releases?",
       "Як Вадим забезпечував якість коду?",
-      "Jak Vadym dbał o jakość kodu?"
+      "Jak Vadym dbał o jakość kodu?",
+      "Did testing make releases faster at Englishdom?",
+      "How did Vadym use Spec-Driven Development at Englishdom?",
+      "How long does it take to set up the Englishdom project from scratch?",
+      "Чи прискорювали тести релізи в Englishdom?",
+      "Чи використовував Вадим BDD та Behat?",
+      "Czy testy przyspieszyły wydania w Englishdom?",
+      "Czy Vadym używał BDD i Behat?"
     ]
   },
   {
@@ -411,7 +438,13 @@
       "How much support work did AI automate?",
       "Has Vadym automated customer support with AI?",
       "Чи будував Вадим AI-чатбот для підтримки клієнтів?",
-      "Czy Vadym zbudował chatbota AI do obsługi klientów?"
+      "Czy Vadym zbudował chatbota AI do obsługi klientów?",
+      "What did the Englishdom support chatbot do?",
+      "How many customer questions did the AI chatbot take over?",
+      "Яких результатів досяг чат-бот підтримки?",
+      "Скільки роботи підтримки автоматизував AI?",
+      "Jakie wyniki osiągnął chatbot wsparcia?",
+      "Ile pracy wsparcia zautomatyzowała AI?"
     ]
   },
   {
@@ -426,7 +459,13 @@
       "How did the AI wiki help support and business?",
       "Has Vadym built an internal AI knowledge base?",
       "Що таке AI wiki, яку створив Вадим?",
-      "Czym jest AI wiki stworzona przez Vadyma?"
+      "Czym jest AI wiki stworzona przez Vadyma?",
+      "How did the AI wiki help Englishdom support and business teams?",
+      "How many people used the Englishdom AI wiki?",
+      "Чим AI wiki допомогла підтримці та бізнесу?",
+      "Скільки людей користувалися AI wiki?",
+      "Jak AI wiki pomogła wsparciu i biznesowi?",
+      "Ile osób korzystało z AI wiki?"
     ]
   },
   {
@@ -487,7 +526,11 @@
       "What happens when ai-assistant has no data?",
       "How does RAG work in ai-assistant?",
       "Яка архітектура ai-assistant?",
-      "Jaka jest architektura ai-assistant?"
+      "Jaka jest architektura ai-assistant?",
+      "Which LLM and which embeddings model does ai-assistant use?",
+      "Does ai-assistant use LangChain and Qdrant?",
+      "Яку LLM та які embeddings використовує ai-assistant?",
+      "Z jakiego LLM i embeddingów korzysta ai-assistant?"
     ]
   },
   {
@@ -547,7 +590,11 @@
       "How is ai-assistant deployed?",
       "How are logs and tracing done in ai-assistant?",
       "Як тестується ai-assistant?",
-      "Jak testowany jest ai-assistant?"
+      "Jak testowany jest ai-assistant?",
+      "How many tests are in ai-assistant and what do they cover?",
+      "Where is ai-assistant hosted?",
+      "Скільки тестів у ai-assistant?",
+      "Ile testów ma ai-assistant?"
     ]
   },
   {

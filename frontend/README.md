@@ -1,83 +1,95 @@
-# frontend — сайт-візитка і `POST /chat`
+# frontend — personal site and `POST /chat`
 
-Уся деплойна частина проєкту: статика (`public/`), Node-сервіс чату (`src/`), залежності і тести. На Vercel деплоїться лише ця папка (Root Directory = `frontend`), без Docker і CI.
+The whole deployable part of the project: static files (`public/`), the Node chat service (`src/`), dependencies and tests. Only this folder is deployed to Vercel (Root Directory = `frontend`), with no Docker and no CI.
 
 ```
-public/index.html        статика, віддається в корені сайту
-src/index.js             Express app (default export, entrypoint для Vercel)
-src/local.js             локальний запуск: express.static('public') + listen
+public/index.html        static page, served at the site root
+src/index.js             Express app (default export, Vercel entrypoint)
+src/local.js             local run: express.static('public') + listen
 src/*.js                 config, log, messages, validate, rate-limit, retrieval, claude
-scripts/seed-pinecone.js наповнення індексу Pinecone з ../data/faq.sample.json
+scripts/seed-pinecone.js fills the Pinecone index from ../data/faq.sample.json
 test/                    node:test
 ```
 
-## Як працює `POST /chat`
+## How `POST /chat` works
 
-Запит `{"messages":[{"role":"user","content":"...","lang":"uk"}]}` (`lang`: `uk`/`en`/`pl`, інакше `en`), відповідь `{"reply":"..."}`. Обробляється лише останнє повідомлення.
+Request `{"messages":[{"role":"user","content":"...","lang":"uk"}]}` (`lang`: `uk`/`en`/`pl`, otherwise `en`), response `{"reply":"..."}`. Only the last message is processed.
 
-Конвеєр: ліміт викликів → розбір тіла → валідація → пошук у Pinecone (хіти з `score >= VECTOR_MIN_SCORE`, групування за `parent_id`) → один виклик Claude лише з знайденим контекстом.
+Pipeline: call limit → body parse → validation → Pinecone search (hits with `score >= VECTOR_MIN_SCORE`, grouped by `parent_id`) → optional rerank of the groups (`RERANK_MODEL`, groups with rerank score `>= RERANK_MIN_SCORE`) → one Claude call with only the retrieved context.
 
-| Статус | Коли | Тіло |
+| Status | When | Body |
 |---|---|---|
-| 200 | відповідь, або немає релевантних даних (фіксований текст, Claude не викликається) | `{reply}` |
-| 400 | порожній `content`, остання роль не `user`, не JSON | `{error}` |
-| 400 | забагато повідомлень / задовгий `content` | `{reply}` |
-| 429 | понад 20 викликів за 10 хв з IP | `{reply}` |
-| 502 | збій Pinecone або Claude (причина в лозі) | `{reply}` |
+| 200 | an answer, or no relevant data (fixed text, Claude is not called) | `{reply}` |
+| 400 | empty `content`, last role is not `user`, not JSON | `{error}` |
+| 400 | too many messages / `content` too long | `{reply}` |
+| 429 | more than 20 calls per 10 min from one IP | `{reply}` |
+| 502 | Pinecone or Claude failure (reason in the log) | `{reply}` |
 
-## Змінні середовища
+## Environment variables
 
-Шаблон — `.env.example`; локально копія в `.env` (не потрапляє в git), на Vercel — у налаштуваннях проєкту.
+The template is `.env.example`; locally a copy in `.env` (not committed to git), on Vercel — in the project settings.
 
-| Змінна | Призначення |
+| Variable | Purpose |
 |---|---|
-| `ANTHROPIC_API_KEY` | ключ Anthropic |
-| `CLAUDE_MODEL`, `CLAUDE_MAX_TOKENS` | модель і ліміт вихідних токенів |
-| `CLAUDE_EFFORT` | `low`…`max`; порожнє — не передається |
-| `MAX_MESSAGES`, `MAX_MESSAGE_CHARS` | ліміти розміру запиту |
-| `VECTOR_MIN_SCORE`, `VECTOR_TOP_K` | поріг релевантності і кількість хітів |
-| `PINECONE_API_KEY`, `PINECONE_INDEX_NAME` | доступ до індексу |
-| `PINECONE_TEXT_FIELD`, `PINECONE_NAMESPACE` | поле для сіду; namespace (порожній = `__default__`) |
-| `ENVIRONMENT` | `production` вимикає логи етапів у `console.log` |
+| `ANTHROPIC_API_KEY` | Anthropic key |
+| `CLAUDE_MODEL`, `CLAUDE_MAX_TOKENS` | model and output token limit |
+| `CLAUDE_EFFORT` | `low`…`max`; empty — not sent |
+| `MAX_MESSAGES`, `MAX_MESSAGE_CHARS` | request size limits |
+| `VECTOR_MIN_SCORE`, `VECTOR_TOP_K` | relevance threshold and number of hits; with the reranker on, `VECTOR_MIN_SCORE` is only a coarse prefilter (lower it, ~0.75) |
+| `RERANK_MODEL`, `RERANK_MIN_SCORE` | Pinecone rerank model (empty = reranker off, the default) and the minimum rerank score of a kept group |
+| `PINECONE_API_KEY`, `PINECONE_INDEX_NAME` | index access |
+| `PINECONE_TEXT_FIELD`, `PINECONE_NAMESPACE` | seed field; namespace (empty = `__default__`) |
+| `ENVIRONMENT` | `production` disables stage logs in `console.log` |
 
-## Команди
+## Commands
 
 ```bash
 cd frontend
-cp .env.example .env     # заповнити ключі
+cp .env.example .env     # fill in the keys
 npm ci
-npm run seed -- --dry-run   # лише показати записи (310)
-npm run seed                # наповнити Pinecone
+npm run seed -- --dry-run   # show new/changed/unchanged vs the index (310 records without keys), writes nothing
+npm run seed                # send only new and changed records to Pinecone
 npm run dev                 # http://localhost:3000
-npm test                    # усі тести
-node --test test/validate.test.js   # один файл
+npm test                    # all tests
+node --test test/validate.test.js   # a single file
 ```
 
-Локально через Docker: `docker compose -f docker/docker-compose.yml up` (з кореня репозиторію). Контейнер сам виконує `npm install && npm run dev`.
+Locally via Docker: `docker compose -f docker/docker-compose.yml up` (from the repository root). The container runs `npm install && npm run dev` itself.
 
-Локально (поза Vercel) ліміт викликів вимкнений.
+Locally (outside Vercel) the call limit is disabled.
 
-## Індекс Pinecone
+## Pinecone index
 
-Індекс з integrated embedding: `field_map` має вказувати на поле `text`. На кожен FAQ-елемент є 1 + N чанків з однаковими `parent_id` та `answer`. Індекс створюється вручну, далі `npm run seed`.
+An index with integrated embedding: `field_map` must point to the `text` field. Each FAQ item has 1 + N chunks with the same `parent_id` and `answer`. The index is created manually, then `npm run seed`.
 
-## Деплой на Vercel
+`npm run seed` is incremental: it reads the existing records by id and sends only new and changed ones, printing e.g. `3 new, 1 changed, 247 unchanged`. Each record carries a `content_hash` (embedded text, `answer`, `lang`, `type`, `project`) that is compared with the stored one. Records seeded before this field existed are treated as changed, so the first run sends everything (310). If reading the index fails, the script exits without sending anything.
 
-1. Підключити GitHub-репозиторій, **Root Directory** = `frontend`, Framework Preset «Other», без build-команди.
-2. Settings → Build and Deployment → **Ignored Build Step** = «Only build if there are changes in a folder», значення `frontend`.
-3. Додати змінні з `.env.example` у налаштування проєкту.
-4. Firewall: правило з умовою `@vercel/firewall`, Rate limit ID `chat`, fixed window 600 с, 20 запитів, ключ — IP.
-5. Перевірити на preview-деплої: `GET /` віддає сторінку, чат відповідає, 21-й виклик за 10 хв → 429, а `/src/index.js`, `/package.json`, `/.env` не віддаються.
+- Add new questions to the **end** of `questions`: ids are positional (`<parent_id>-NN`), so inserting in the middle shifts the following chunks and they are re-sent.
+- Deleting is not supported: a record removed from the JSON stays in the index. Remove it manually (Pinecone console, or `index.deleteOne({ id })`). Deleting a record also forces it to be re-sent on the next seed.
 
-Далі кожен push деплоїть сам. Відкат — Instant Rollback або `CHAT_API_URL = null` в `public/index.html` (демо-режим). Ліміт наближений (лічильники по регіонах).
+## Deploying to Vercel
 
-## Ручна перевірка (локально, реальні Pinecone і Claude)
+1. Connect the GitHub repository, **Root Directory** = `frontend`, Framework Preset "Other", no build command.
+2. Settings → Build and Deployment → **Ignored Build Step** = "Only build if there are changes in a folder", value `frontend`.
+3. Add the variables from `.env.example` to the project settings.
+4. Firewall: a rule with a `@vercel/firewall` condition, Rate limit ID `chat`, fixed window 600 s, 20 requests, key — IP.
+5. Verify on a preview deployment: `GET /` serves the page, the chat answers, the 21st call within 10 min → 429, and `/src/index.js`, `/package.json`, `/.env` are not served.
 
-Після `npm run seed` (310 записів) і `npm run dev`, `POST /chat`:
+After that every push deploys by itself. Rollback — Instant Rollback or `CHAT_API_URL = null` in `public/index.html` (demo mode). The limit is approximate (counters are per region).
 
-| Запит | Результат |
+## Manual check (local, real Pinecone and Claude)
+
+After `npm run seed` (310 records) and `npm run dev`, `POST /chat`:
+
+| Request | Result |
 |---|---|
-| `Who is Vadym Leontiev?` (en) | 200, відповідь за змістом `profile-summary` (top score ≈ 0.91) |
-| `Де Вадим працював 13 років?` (uk) | 200, відповідь українською про Englishdom (top score ≈ 0.87) |
-| `What is the capital of France?` (pl) | 200, фіксований текст «немає інформації» польською, Claude не викликався (жодного хіта ≥ 0.84) |
-| `content` довжиною 201 символ | 400 `{reply}` «message too long» |
+| `Who is Vadym Leontiev?` (en) | 200, answer based on `profile-summary` (top score ≈ 0.91) |
+| `Де Вадим працював 13 років?` (uk) | 200, answer in Ukrainian about Englishdom (top score ≈ 0.87) |
+| `What is the capital of France?` (pl) | 200, fixed "no information" text in Polish, Claude not called (no hit ≥ 0.84) |
+| `content` of 201 characters | 400 `{reply}` "message too long" |
+
+## Reranker (optional, off by default)
+
+Set `RERANK_MODEL` (e.g. `bge-reranker-v2-m3`) and `RERANK_MIN_SCORE` to rerank the groups that passed `VECTOR_MIN_SCORE` against the question. A rerank failure gives 502 (no silent fallback to dense scores). To roll back, clear `RERANK_MODEL`.
+
+Calibrate thresholds with `npm run measure-score` (dense distribution; with `RERANK_MODEL` set it also prints the rerank distribution and a suggested `RERANK_MIN_SCORE`). Pinecone limits rerank calls (free plan: 60 per minute, 500 per month per organization; one full run is ~330 calls), and the model must be available on your plan (`cohere-rerank-4-fast` is not on the free plan). On the data in `data/faq.sample.json`, `bge-reranker-v2-m3` separated off-topic queries well but scored ~10% of in-topic queries near 0, so no threshold was set; see `openspec/changes/add-reranker/design.md`.

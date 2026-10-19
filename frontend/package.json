@@ -4,6 +4,8 @@
   "type": "module",
   "scripts": {
     "seed": "node --env-file=.env scripts/seed-pinecone.js",
+    "seed-dry-run": "node --env-file=.env scripts/seed-pinecone.js --dry-run",
+    "measure-score": "node --env-file=.env scripts/measure-score.js",
     "dev": "node --env-file=.env src/local.js",
     "test": "node --test"
   },

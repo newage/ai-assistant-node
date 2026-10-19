@@ -13,6 +13,8 @@ export function loadConfig(env = process.env) {
     maxMessages: num(env.MAX_MESSAGES, 4),
     maxMessageChars: num(env.MAX_MESSAGE_CHARS, 200),
     vectorMinScore: num(env.VECTOR_MIN_SCORE, 0.84),
+    rerankModel: str(env.RERANK_MODEL),
+    rerankMinScore: num(env.RERANK_MIN_SCORE, 0.5),
     vectorTopK: num(env.VECTOR_TOP_K, 10),
     pineconeApiKey: str(env.PINECONE_API_KEY),
     pineconeIndexName: str(env.PINECONE_INDEX_NAME),

@@ -29,3 +29,9 @@ test('text blocks of the response are concatenated', async () => {
   const client = { messages: { create: async () => ({ content: [{ type: 'text', text: 'Hel' }, { type: 'thinking' }, { type: 'text', text: 'lo' }] }) } };
   assert.equal(await createClaude(config, client)('Q?', groups), 'Hello');
 });
+
+test('system prompt refuses off-topic requests even when results are only related', () => {
+  assert.match(SYSTEM_PROMPT, /directly answers the question/);
+  assert.match(SYSTEM_PROMPT, /jokes/);
+  assert.match(SYSTEM_PROMPT, /passwords or credentials/);
+});

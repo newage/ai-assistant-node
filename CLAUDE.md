@@ -16,7 +16,7 @@ data/               faq.sample.json (seed data, outside the deploy)
 docker/             docker-compose.yml for local dev
 ```
 
-`POST /chat` pipeline: rate limit → body parse → validate → Pinecone search (score ≥ `VECTOR_MIN_SCORE`, grouped by `parent_id`) → one Claude call with only the retrieved context. Fixed uk/en/pl texts for no-data/too-long/rate-limit/failure live in `src/messages.js`.
+`POST /chat` pipeline: rate limit → body parse → validate → Pinecone search (score ≥ `VECTOR_MIN_SCORE`, grouped by `parent_id`) → optional Pinecone rerank (`RERANK_MODEL`, empty = off; groups ≥ `RERANK_MIN_SCORE`) → one Claude call with only the retrieved context. Fixed uk/en/pl texts for no-data/too-long/rate-limit/failure live in `src/messages.js`.
 
 Commands (run in `frontend/`, needs `.env` from `.env.example`):
 
