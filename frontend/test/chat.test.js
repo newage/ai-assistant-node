@@ -3,8 +3,8 @@ import { createApp } from '../src/index.js';
 import { TEXTS } from '../src/messages.js';
 import { createRetrieval } from '../src/retrieval.js';
 
-async function call({ body, raw, limited = false, groups = [{ parentId: 'a', answer: 'AA', score: 0.9 }], searchError, answerError }) {
-  const calls = { search: 0, answer: 0, question: null };
+async function call({ body, raw, limited = false, groups = [{ parentId: 'a', answer: 'AA', score: 0.9 }], searchError, answerError, recordError }) {
+  const calls = { search: 0, answer: 0, question: null, rows: [] };
   const app = createApp({
     log: () => {},
     isRateLimited: async () => limited,
@@ -12,6 +12,10 @@ async function call({ body, raw, limited = false, groups = [{ parentId: 'a', ans
       calls.search++;
       if (searchError) throw new Error('pinecone down');
       return { hits: groups.length, groups };
+    },
+    record: async (row) => {
+      if (recordError) throw new Error('db down');
+      calls.rows.push(row);
     },
     answer: async (q) => {
       calls.answer++;
@@ -134,4 +138,33 @@ test('502 when rerank fails, Claude not called', async () => {
   expect(r.status).toBe(502);
   expect(r.json.reply).toBe(TEXTS.failure.en);
   expect(r.calls.answer).toBe(0);
+});
+
+test('no data is recorded with the fixed text and null reaction', async () => {
+  const r = await call({ body: { messages: [user('q', 'pl')] }, groups: [] });
+  expect(r.calls.rows).toStrictEqual([{ question: 'q', answer: TEXTS.noData.pl, reaction: null }]);
+});
+
+test('Pinecone and Claude failures are recorded with null answer', async () => {
+  for (const opts of [{ searchError: true }, { answerError: true }]) {
+    const r = await call({ body: { messages: [user('q')] }, ...opts });
+    expect(r.status).toBe(502);
+    expect(r.calls.rows).toStrictEqual([{ question: 'q', answer: null, reaction: null }]);
+  }
+});
+
+test('successful answers, 400 and 429 record nothing', async () => {
+  const ok = await call({ body: { messages: [user('q')] } });
+  const bad = await call({ body: { messages: [user('  ')] } });
+  const limited = await call({ body: { messages: [user('q')] }, limited: true });
+  expect(ok.calls.rows.length + bad.calls.rows.length + limited.calls.rows.length).toBe(0);
+});
+
+test('a failing record does not change the response', async () => {
+  const noData = await call({ body: { messages: [user('q')] }, groups: [], recordError: true });
+  expect(noData.status).toBe(200);
+  expect(noData.json.reply).toBe(TEXTS.noData.en);
+  const failure = await call({ body: { messages: [user('q')] }, answerError: true, recordError: true });
+  expect(failure.status).toBe(502);
+  expect(failure.json.reply).toBe(TEXTS.failure.en);
 });

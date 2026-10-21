@@ -26,3 +26,19 @@ export function validate(body, { maxMessages, maxMessageChars }) {
 
   return { question: last.content.trim(), lang };
 }
+
+const REACTIONS = ['good', 'bad'];
+const isText = (v) => typeof v === 'string' && v.trim() !== '';
+
+export function validateReaction(body, { maxMessageChars, maxAnswerChars }) {
+  if (body === null || typeof body !== 'object' || Array.isArray(body)) {
+    return badRequest('body must be a JSON object');
+  }
+  const { question, answer, reaction } = body;
+  if (!isText(question)) return badRequest('question must be a non-empty string');
+  if (!isText(answer)) return badRequest('answer must be a non-empty string');
+  if (question.length > maxMessageChars) return badRequest('question is too long');
+  if (answer.length > maxAnswerChars) return badRequest('answer is too long');
+  if (!REACTIONS.includes(reaction)) return badRequest('reaction must be "good" or "bad"');
+  return { question, answer, reaction };
+}

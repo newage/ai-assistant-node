@@ -25,6 +25,21 @@ Pipeline: call limit → body parse → validation → Pinecone search (hits wit
 | 429 | more than 20 calls per 10 min from one IP | `{reply}` |
 | 502 | Pinecone or Claude failure (reason in the log) | `{reply}` |
 
+Questions that got no answer (no data, 502, 500) are also written to the `reactions` table before the response (`answer` = the no-data text, or `NULL` for failures; `reaction` is `NULL`). A database error is only logged and never changes the response.
+
+## `POST /answer`
+
+Reaction of a visitor to a bot answer: `{"question":"...","answer":"...","reaction":"good"|"bad"}` → one row in `reactions`. No call limit in code (use a Firewall rule, see Deploying).
+
+| Status | When | Body |
+|---|---|---|
+| 201 | stored | `{}` |
+| 400 | not a JSON object, `question`/`answer` empty, `question` longer than `MAX_MESSAGE_CHARS`, `answer` longer than `MAX_ANSWER_CHARS`, `reaction` not `good`/`bad` | `{error}` |
+| 503 | `DATABASE_URL` is empty | `{error}` |
+| 500 | the write failed | `{error}` |
+
+The chat page shows 👍/👎 under every answer (not under the greeting or failure text); only a 201 highlights the choice.
+
 ## Environment variables
 
 The template is `.env.example`; locally a copy in `.env` (not committed to git), on Vercel — in the project settings.
@@ -39,6 +54,8 @@ The template is `.env.example`; locally a copy in `.env` (not committed to git),
 | `RERANK_MODEL`, `RERANK_MIN_SCORE` | Pinecone rerank model (empty = reranker off, the default) and the minimum rerank score of a kept group |
 | `PINECONE_API_KEY`, `PINECONE_INDEX_NAME` | index access |
 | `PINECONE_TEXT_FIELD`, `PINECONE_NAMESPACE` | seed field; namespace (empty = `__default__`) |
+| `DATABASE_URL` | Neon connection string for `reactions`; empty — `/answer` returns 503 and the migration fails |
+| `MAX_ANSWER_CHARS` | max length of `answer` in `POST /answer` (default 4000) |
 | `ENVIRONMENT` | `production` disables stage logs in `console.log` |
 
 ## Commands
@@ -50,6 +67,7 @@ npm ci
 npm run seed -- --dry-run   # show new/changed/unchanged vs the index (310 records without keys), writes nothing
 npm run seed                # send only new and changed records to Pinecone
 npm run dev                 # http://localhost:3000
+node --env-file=.env scripts/migrate.js   # create the `reactions` table (idempotent)
 npm test                    # all tests
 npm test -- test/validate.test.js # a single file
 ```
@@ -69,10 +87,10 @@ An index with integrated embedding: `field_map` must point to the `text` field. 
 
 ## Deploying to Vercel
 
-1. Connect the GitHub repository, **Root Directory** = `frontend`, Framework Preset "Other", no build command.
+1. Connect the GitHub repository, **Root Directory** = `frontend`, Framework Preset "Other". The build command is the `vercel-build` script: it runs `scripts/migrate.js` (creates `reactions` if missing) and fails the deploy if the database is unreachable, so the previous version stays live.
 2. Settings → Build and Deployment → **Ignored Build Step** = "Only build if there are changes in a folder", value `frontend`.
-3. Add the variables from `.env.example` to the project settings.
-4. Firewall: a rule with a `@vercel/firewall` condition, Rate limit ID `chat`, fixed window 600 s, 20 requests, key — IP.
+3. Add the variables from `.env.example` to the project settings. `DATABASE_URL` must be enabled for **Build** too. Use a separate Neon branch for Preview (or set `DATABASE_URL` for Production only, in which case a Preview build fails at the migration) so previews do not touch production data.
+4. Firewall: a rule with a `@vercel/firewall` condition, Rate limit ID `chat`, fixed window 600 s, 20 requests, key — IP. Optionally a similar rule for `/answer` (Rate limit ID of your choice) to limit spam to the table.
 5. Verify on a preview deployment: `GET /` serves the page, the chat answers, the 21st call within 10 min → 429, and `/src/index.js`, `/package.json`, `/.env` are not served.
 
 After that every push deploys by itself. Rollback — Instant Rollback or `CHAT_API_URL = null` in `public/index.html` (demo mode). The limit is approximate (counters are per region).

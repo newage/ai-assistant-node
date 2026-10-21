@@ -31,3 +31,13 @@ test('rerank is off by default and parsed from env', () => {
   expect(c.rerankMinScore).toBe(0.3);
   expect(loadConfig({ RERANK_MODEL: '', RERANK_MIN_SCORE: '' }).rerankMinScore).toBe(0.5);
 });
+
+test('answer reactions: defaults and overrides', () => {
+  const d = loadConfig({});
+  expect(d.databaseUrl).toBe('');
+  expect(d.maxAnswerChars).toBe(4000);
+  const c = loadConfig({ DATABASE_URL: 'postgres://x', MAX_ANSWER_CHARS: '100' });
+  expect(c.databaseUrl).toBe('postgres://x');
+  expect(c.maxAnswerChars).toBe(100);
+  expect(loadConfig({ MAX_ANSWER_CHARS: '' }).maxAnswerChars).toBe(4000);
+});

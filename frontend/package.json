@@ -7,10 +7,12 @@
     "seed-dry-run": "node --env-file=.env scripts/seed-pinecone.js --dry-run",
     "measure-score": "node --env-file=.env scripts/measure-score.js",
     "dev": "node --env-file=.env src/local.js",
+    "vercel-build": "node scripts/migrate.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.135.0",
+    "@neondatabase/serverless": "^1.2.0",
     "@pinecone-database/pinecone": "^9.0.0",
     "@vercel/firewall": "^1.2.6",
     "express": "^5.3.0"

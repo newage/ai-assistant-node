@@ -3,16 +3,27 @@ import { fileURLToPath } from 'node:url';
 import config from './config.js';
 import { createLog } from './log.js';
 import { text } from './messages.js';
-import { validate } from './validate.js';
+import { validate, validateReaction } from './validate.js';
 import { createRateLimiter } from './rate-limit.js';
 import { createRetrieval } from './retrieval.js';
 import { createClaude } from './claude.js';
+import { createDb, NotConfiguredError } from './db.js';
 
 export function createApp(deps = {}) {
   const log = deps.log ?? createLog(config.environment);
   const isRateLimited = deps.isRateLimited ?? createRateLimiter({ log });
   const search = deps.search ?? createRetrieval(config);
   const answer = deps.answer ?? createClaude(config);
+  const record = deps.record ?? createDb(config).record;
+
+  // Awaited before responding: a Vercel function may be frozen right after the response.
+  async function logUnanswered(question, reply) {
+    try {
+      await record({ question, answer: reply, reaction: null });
+    } catch (err) {
+      log('record-error', { error: String(err?.message ?? err) });
+    }
+  }
 
   const app = express();
   app.use(express.static(fileURLToPath(new URL('../public', import.meta.url))));
@@ -41,6 +52,7 @@ export function createApp(deps = {}) {
         return res.status(checked.status).json(checked.body);
       }
       const { question, lang: msgLang } = checked;
+      req.question = question;
       log('validated', { question, lang: msgLang });
 
       let groups;
@@ -49,12 +61,14 @@ export function createApp(deps = {}) {
         groups = found.groups;
         log('search', { hits: found.hits, groups: groups.map((g) => ({ parentId: g.parentId, score: g.score })) });
       } catch (err) {
-        return upstreamFailure(res, log, msgLang, 'pinecone', err);
+        return await upstreamFailure(res, log, logUnanswered, question, msgLang, 'pinecone', err);
       }
 
       if (groups.length === 0) {
+        const noData = text('noData', msgLang);
+        await logUnanswered(question, noData);
         log('response', { status: 200, noData: true });
-        return res.json({ reply: text('noData', msgLang) });
+        return res.json({ reply: noData });
       }
 
       let reply;
@@ -62,7 +76,7 @@ export function createApp(deps = {}) {
         log('claude', { model: config.claudeModel, groups: groups.length });
         reply = await answer(question, groups);
       } catch (err) {
-        return upstreamFailure(res, log, msgLang, 'claude', err);
+        return await upstreamFailure(res, log, logUnanswered, question, msgLang, 'claude', err);
       }
       log('response', { status: 200 });
       return res.json({ reply });
@@ -71,18 +85,45 @@ export function createApp(deps = {}) {
     }
   });
 
+  app.post('/answer', (req, res, next) => express.json()(req, res, (err) => {
+    if (err) {
+      log('response', { status: 400, error: 'invalid JSON' });
+      return res.status(400).json({ error: 'request body must be valid JSON' });
+    }
+    next();
+  }));
+
+  app.post('/answer', async (req, res) => {
+    const checked = validateReaction(req.body, config);
+    if (checked.status) {
+      log('response', { status: checked.status });
+      return res.status(checked.status).json(checked.body);
+    }
+    try {
+      await record(checked);
+    } catch (err) {
+      log('record-error', { error: String(err?.message ?? err) });
+      const status = err instanceof NotConfiguredError ? 503 : 500;
+      return res.status(status).json({ error: status === 503 ? 'reactions are not available' : 'could not save reaction' });
+    }
+    log('response', { status: 201, reaction: checked.reaction });
+    return res.status(201).json({});
+  });
+
   // Without this Express would swallow the error instead of letting Vercel reset the function.
-  app.use((err, req, res, next) => {
+  app.use(async (err, req, res, next) => {
     log('error', { error: String(err?.message ?? err) });
     if (res.headersSent) return next(err);
+    if (req.question) await logUnanswered(req.question, null);
     return res.status(500).json({ reply: text('failure', req.body?.messages?.at?.(-1)?.lang) });
   });
 
   return app;
 }
 
-function upstreamFailure(res, log, lang, source, err) {
+async function upstreamFailure(res, log, logUnanswered, question, lang, source, err) {
   log('upstream-error', { source, error: String(err?.message ?? err) });
+  await logUnanswered(question, null);
   return res.status(502).json({ reply: text('failure', lang) });
 }
 

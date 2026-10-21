@@ -25,7 +25,7 @@ Commands (run in `frontend/`, needs `.env` from `.env.example`):
 - `npm test` — all tests; single file: `npm test -- test/<file>`
 - `npm run seed [-- --dry-run]` — fill Pinecone from `data/faq.sample.json`
 
-There is no lint or build step. Server code must never go under `public/` (Vercel serves it as static).
+There is no lint step. The only build step is `vercel-build` (`scripts/migrate.js`, creates the Neon `reactions` table; needs `DATABASE_URL`). Server code must never go under `public/` (Vercel serves it as static).
 
 ## Spec-driven workflow (OpenSpec)
 

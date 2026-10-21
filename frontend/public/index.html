@@ -147,6 +147,11 @@ section.block{position:relative;z-index:2;padding-top:88px;padding-bottom:40px}
 .msg.bot{align-self:flex-start;background:rgba(255,255,255,.07)}
 .msg.user{align-self:flex-end;background:rgba(139,108,255,.35)}
 .msg.typing{color:var(--muted)}
+.reactions{display:flex;gap:6px;margin-top:8px;white-space:normal}
+.react-btn{min-width:36px;min-height:32px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:transparent;font-size:14px;line-height:1;cursor:pointer;opacity:.75}
+.react-btn:hover:not(:disabled){opacity:1;background:rgba(255,255,255,.08)}
+.react-btn:disabled{cursor:default}
+.react-btn.on{opacity:1;border-color:rgba(139,108,255,.8);background:rgba(139,108,255,.3)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .chip{min-height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(139,108,255,.5);background:rgba(139,108,255,.1);color:#DCD6FF;font-family:inherit;font-size:13.5px;cursor:pointer}
 .chip:hover{background:rgba(139,108,255,.22)}
@@ -623,6 +628,8 @@ section.block{position:relative;z-index:2;padding-top:88px;padding-bottom:40px}
     ['Ask about Vadym…', 'Zapytaj o Vadyma…', 'Запитайте про Вадима…'],
     ['Send', 'Wyślij', 'Надіслати'],
     ['Typing…', 'Pisze…', 'Друкує…'],
+    ['Helpful answer', 'Pomocna odpowiedź', 'Корисна відповідь'],
+    ['Unhelpful answer', 'Niepomocna odpowiedź', 'Некорисна відповідь'],
     ['Sorry, something went wrong. Please try again in a moment.', 'Przepraszam, coś poszło nie tak. Spróbuj ponownie za chwilę.', 'Вибачте, щось пішло не так. Спробуйте ще раз за мить.']
   ];
   const DESC = {
@@ -703,6 +710,43 @@ section.block{position:relative;z-index:2;padding-top:88px;padding-bottom:40px}
     return el;
   }
 
+  const ANSWER_URL = '/answer';
+  const REACTION_TIMEOUT_MS = 10000;
+
+  /* Optional 👍/👎 under a bot answer; only a 201 highlights the choice, anything else re-enables the pair */
+  function addReactions(el, question, answer) {
+    const row = document.createElement('div');
+    row.className = 'reactions';
+    const buttons = [['good', '👍', 'Helpful answer'], ['bad', '👎', 'Unhelpful answer']].map(([reaction, icon, label]) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'react-btn';
+      b.textContent = icon;
+      b.setAttribute('aria-label', t(label));
+      b.addEventListener('click', async () => {
+        buttons.forEach((x) => { x.disabled = true; });
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), REACTION_TIMEOUT_MS);
+        let saved = false;
+        try {
+          const res = await fetch(ANSWER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question, answer, reaction }),
+            signal: ctrl.signal
+          });
+          saved = res.status === 201;
+        } catch (e) {}
+        clearTimeout(timer);
+        if (saved) b.classList.add('on');
+        else buttons.forEach((x) => { x.disabled = false; });
+      });
+      return b;
+    });
+    buttons.forEach((b) => row.appendChild(b));
+    el.appendChild(row);
+  }
+
   function addChips() {
     const wrap = document.createElement('div');
     wrap.className = 'chips';
@@ -741,7 +785,7 @@ section.block{position:relative;z-index:2;padding-top:88px;padding-bottom:40px}
   async function getReply(message) {
     if (!CHAT_API_URL) {
       await new Promise((r) => setTimeout(r, 500));
-      return demoReply(message);
+      return { reply: demoReply(message), answered: true };
     }
     const res = await fetch(CHAT_API_URL, {
       method: 'POST',
@@ -751,7 +795,7 @@ section.block{position:relative;z-index:2;padding-top:88px;padding-bottom:40px}
     // reply is read for non-2xx too; a general error only when the body cannot be parsed
     const data = await res.json();
     if (typeof data.reply !== 'string') throw new Error(data.error || 'HTTP ' + res.status);
-    return data.reply;
+    return { reply: data.reply, answered: res.ok };
   }
 
   async function send(text) {
@@ -764,9 +808,10 @@ section.block{position:relative;z-index:2;padding-top:88px;padding-bottom:40px}
     const typing = addMessage(t('Typing…'), 'bot');
     typing.classList.add('typing');
     try {
-      const reply = await getReply(message, past);
+      const { reply, answered } = await getReply(message, past);
       typing.remove();
-      addMessage(reply, 'bot');
+      const el = addMessage(reply, 'bot');
+      if (answered) addReactions(el, message, reply);
       history.push({ role: 'assistant', content: reply });
     } catch (e) {
       typing.remove();

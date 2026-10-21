@@ -47,3 +47,31 @@ test('too long content (any element) -> 400 reply', () => {
 test('invalid lang is not an error', () => {
   expect(validate({ messages: [msg('hi', { lang: 'de' })] }, limits)).toStrictEqual({ question: 'hi', lang: 'en' });
 });
+
+import { validateReaction } from '../src/validate.js';
+
+const rlimits = { maxMessageChars: 10, maxAnswerChars: 20 };
+const rbody = (extra = {}) => ({ question: 'q', answer: 'a', reaction: 'good', ...extra });
+
+test('valid reaction returns the values unchanged', () => {
+  expect(validateReaction(rbody({ reaction: 'bad' }), rlimits)).toStrictEqual({ question: 'q', answer: 'a', reaction: 'bad' });
+});
+
+test('invalid reaction bodies -> 400 error', () => {
+  const bad = [
+    undefined, null, [], 'x',
+    rbody({ reaction: 'error' }), rbody({ reaction: undefined }),
+    rbody({ question: undefined }), rbody({ question: '  ' }), rbody({ question: 1 }),
+    rbody({ answer: undefined }), rbody({ answer: '  ' }),
+    rbody({ question: 'x'.repeat(11) }), rbody({ answer: 'x'.repeat(21) }),
+  ];
+  for (const body of bad) {
+    const r = validateReaction(body, rlimits);
+    expect(r.status).toBe(400);
+    expect(r.body.error).toBeTruthy();
+  }
+});
+
+test('texts at the limit are accepted', () => {
+  expect(validateReaction(rbody({ question: 'x'.repeat(10), answer: 'x'.repeat(20) }), rlimits).status).toBeUndefined();
+});

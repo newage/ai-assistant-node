@@ -1,0 +1,8 @@
+POST http://localhost:3000/answer
+Content-Type: application/json
+
+{
+  "answer":"Certifies Zend",
+  "question":"What is your certifies?",
+  "reaction":"bad"
+}

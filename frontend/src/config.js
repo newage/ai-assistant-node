@@ -19,6 +19,8 @@ export function loadConfig(env = process.env) {
     pineconeApiKey: str(env.PINECONE_API_KEY),
     pineconeIndexName: str(env.PINECONE_INDEX_NAME),
     pineconeNamespace: str(env.PINECONE_NAMESPACE, '__default__'),
+    maxAnswerChars: num(env.MAX_ANSWER_CHARS, 4000),
+    databaseUrl: str(env.DATABASE_URL),
     environment: str(env.ENVIRONMENT, 'local'),
   };
 }
