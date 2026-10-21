@@ -8,7 +8,7 @@ src/index.js             Express app (default export, Vercel entrypoint)
 src/local.js             local run: express.static('public') + listen
 src/*.js                 config, log, messages, validate, rate-limit, retrieval, claude
 scripts/seed-pinecone.js fills the Pinecone index from ../data/faq.sample.json
-test/                    node:test
+test/                    Jest
 ```
 
 ## How `POST /chat` works
@@ -51,7 +51,7 @@ npm run seed -- --dry-run   # show new/changed/unchanged vs the index (310 recor
 npm run seed                # send only new and changed records to Pinecone
 npm run dev                 # http://localhost:3000
 npm test                    # all tests
-node --test test/validate.test.js   # a single file
+npm test -- test/validate.test.js # a single file
 ```
 
 Locally via Docker: `docker compose -f docker/docker-compose.yml up` (from the repository root). The container runs `npm install && npm run dev` itself.

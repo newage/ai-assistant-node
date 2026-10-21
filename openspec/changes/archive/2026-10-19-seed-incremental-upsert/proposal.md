@@ -2,30 +2,30 @@
 
 ## Why
 
-`npm run seed` щоразу відправляє в Pinecone усі записи (зараз 310), навіть якщо в `data/faq.sample.json` змінилось одне запитання. Pinecone заново рахує ембедінги для всього, тож це зайві витрати й час. Після додавання одного питання хочеться відправити тільки його.
+`npm run seed` sends all records to Pinecone every time (currently 310), even if only one question changed in `data/faq.sample.json`. Pinecone recomputes the embeddings for everything, so this is wasted cost and time. After adding one question, we want to send only that one.
 
 ## What Changes
 
-- `scripts/seed-pinecone.js` перед відправкою читає з індексу вже наявні записи за id (`index.fetch`, пачки по 100) і порівнює їх з тим, що збирається з JSON. У `upsertRecords` потрапляють лише нові й змінені записи.
-- Кожен запис отримує додаткове metadata-поле `content_hash`, хеш від усього, що визначає вміст запису (вбудований текст, `answer`, `lang`, `type`, `project`). Порівнюється одне поле, а не кілька.
-- Запис, якого немає в індексі, або в якого немає `content_hash`, вважається новим/зміненим. Це безпечний fallback: у гіршому разі виходить поточна поведінка (відправити все).
-- Скрипт виводить підсумок на кшталт `3 new, 1 changed, 247 unchanged`.
-- `--dry-run` показує цей підсумок без запису. Якщо задані `PINECONE_API_KEY` та `PINECONE_INDEX_NAME`, підсумок рахується по індексу. Без них лишається поточна поведінка (кількість записів).
-- Логіку (побудова записів, хеш, порівняння, читання пачками) виносимо з entry-скрипта в окремий модуль, щоб покрити її тестами без мережі.
-- README: опис поведінки та правило «нові питання додавати в кінець `questions`», щоб номери чанків не зсувалися.
-- **Одноразово**: наявні записи в індексі ще не мають `content_hash`, тому перший запуск після зміни відправить усе. Далі працюють лише дельти.
+- Before sending, `scripts/seed-pinecone.js` reads the records already in the index by id (`index.fetch`, batches of 100) and compares them with what is built from the JSON. Only new and changed records go into `upsertRecords`.
+- Each record gets an extra metadata field `content_hash`, a hash of everything that defines the record's content (embedded text, `answer`, `lang`, `type`, `project`). One field is compared instead of several.
+- A record that is not in the index, or has no `content_hash`, counts as new/changed. This is a safe fallback: in the worst case the current behavior results (send everything).
+- The script prints a summary like `3 new, 1 changed, 247 unchanged`.
+- `--dry-run` shows this summary without writing. If `PINECONE_API_KEY` and `PINECONE_INDEX_NAME` are set, the summary is computed against the index. Without them the current behavior stays (number of records).
+- The logic (building records, hash, comparison, batched reading) is moved from the entry script into a separate module, so it can be covered by tests without the network.
+- README: a description of the behavior and the rule "add new questions to the end of `questions`", so that chunk numbers do not shift.
+- **One-off**: existing records in the index do not have `content_hash` yet, so the first run after the change will send everything. After that only deltas are sent.
 
 ## Capabilities
 
 ### New Capabilities
-- `faq-seeding`: наповнення Pinecone з файлу FAQ: ідентифікатори записів, інкрементальне відправлення лише змінених записів, підсумок і режим dry-run.
+- `faq-seeding`: filling Pinecone from the FAQ file: record identifiers, incremental sending of only changed records, the summary and dry-run mode.
 
 ### Modified Capabilities
-<!-- немає: openspec/specs порожній, попередня поведінка сіду не була описана специфікацією -->
+<!-- none: openspec/specs is empty, the earlier seed behavior was not described by a spec -->
 
 ## Impact
 
-- `frontend/scripts/seed-pinecone.js` (спрощується до entry-точки), новий `frontend/scripts/seed-lib.js`, новий тест у `frontend/test/`.
-- `frontend/README.md`: розділ про seed.
-- Залежності не змінюються (`@pinecone-database/pinecone` ^9). Рантайм `/chat` не змінюється: пошук запитує лише `parent_id` та `answer`.
-- Поза scope: видалення записів, яких немає в JSON (`--prune`), локальний манифест, зміна формату `faq.sample.json`, зміна схеми `_id`.
+- `frontend/scripts/seed-pinecone.js` (reduced to an entry point), a new `frontend/scripts/seed-lib.js`, a new test in `frontend/test/`.
+- `frontend/README.md`: the seed section.
+- Dependencies do not change (`@pinecone-database/pinecone` ^9). The `/chat` runtime does not change: search requests only `parent_id` and `answer`.
+- Out of scope: deleting records that are not in the JSON (`--prune`), a local manifest, changing the `faq.sample.json` format, changing the `_id` scheme.

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Захист публічного `POST /chat` від зловживань: обмеження кількості викликів з однієї IP-адреси за 10 хвилин, щоб запити не створювали неконтрольованих витрат на Claude.
+Protects the public `POST /chat` from abuse by limiting calls per client IP within a 10-minute window, so requests cannot create uncontrolled Claude costs.
 
 ## Requirements
 

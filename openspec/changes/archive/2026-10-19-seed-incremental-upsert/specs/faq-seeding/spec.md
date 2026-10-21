@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Наповнення індексу Pinecone записами з файлу FAQ так, щоб повторний запуск відправляв лише нові й змінені записи, а решту не чіпав.
+Filling the Pinecone index with records from the FAQ file so that a repeated run sends only new and changed records and leaves the rest untouched.
 
 ## ADDED Requirements
 

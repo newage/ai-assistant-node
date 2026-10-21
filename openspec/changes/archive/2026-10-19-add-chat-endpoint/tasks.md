@@ -1,42 +1,42 @@
 # Tasks
 
-Межі зміни: чіпаємо `frontend/` (новий склад: `public/`, `src/`, `scripts/`, `test/`, `package.json`, `.env.example`, `README.md`), `.gitignore`, `CLAUDE.md`. Переносимо з кореня: `package.json`/`package-lock.json`, `scripts/seed-pinecone.js`, `.env.example`, `frontend/index.html` → `frontend/public/`. **Не чіпаємо:** `data/` (лишається в корені), `openspec/specs/`, верстку й демо-відповіді `KB` в `index.html`, логіку сіду (лише шлях до даних за замовчуванням).
+Change boundaries: we touch `frontend/` (new composition: `public/`, `src/`, `scripts/`, `test/`, `package.json`, `.env.example`, `README.md`), `.gitignore`, `CLAUDE.md`. We move from the root: `package.json`/`package-lock.json`, `scripts/seed-pinecone.js`, `.env.example`, `frontend/index.html` → `frontend/public/`. **We do not touch:** `data/` (stays at the root), `openspec/specs/`, the markup and the demo `KB` answers in `index.html`, the seed logic (only the default data path).
 
-## 1. Розкладка і каркас
+## 1. Layout and skeleton
 
-- [x] 1.1 Перенести через `git mv` у `frontend/`: `package.json`, `package-lock.json`, `scripts/`, `.env.example`; `frontend/index.html` → `frontend/public/index.html`; у сіді змінити шлях за замовчуванням на `../data/faq.sample.json`; `.gitignore`: `frontend/node_modules/`, `frontend/.env`; перевірити: `cd frontend && npm ci && npm run seed -- --dry-run` друкує 310 записів, у корені репозиторію немає `package.json` і `node_modules`.
-- [x] 1.2 Додати у `frontend/package.json` залежності `express`, `@anthropic-ai/sdk`, `@vercel/firewall` і скрипти `dev` (`node --env-file=.env src/local.js`), `test` (`node --test`); перевірити: `npm install`, `npm test` (порожній прогін) без помилок.
-- [x] 1.3 Створити `src/config.js`: читає env з `.env.example` (`VECTOR_TOP_K` за замовчуванням 10), порожні значення → дефолти, числа парсяться; перевірити `test/config.test.js` (дефолти, порожній `CLAUDE_EFFORT`).
-- [x] 1.4 Створити `src/log.js` (JSON у `console.log`, нічого при `ENVIRONMENT=production`); перевірити тестом з підміною `console.log`.
+- [x] 1.1 Move into `frontend/` with `git mv`: `package.json`, `package-lock.json`, `scripts/`, `.env.example`; `frontend/index.html` → `frontend/public/index.html`; in the seed change the default path to `../data/faq.sample.json`; `.gitignore`: `frontend/node_modules/`, `frontend/.env`; verify: `cd frontend && npm ci && npm run seed -- --dry-run` prints 310 records, the repository root has no `package.json` or `node_modules`.
+- [x] 1.2 Add to `frontend/package.json` the dependencies `express`, `@anthropic-ai/sdk`, `@vercel/firewall` and the scripts `dev` (`node --env-file=.env src/local.js`), `test` (`node --test`); verify: `npm install`, `npm test` (empty run) without errors.
+- [x] 1.3 Create `src/config.js`: reads env from `.env.example` (`VECTOR_TOP_K` defaults to 10), empty values → defaults, numbers are parsed; verify `test/config.test.js` (defaults, empty `CLAUDE_EFFORT`).
+- [x] 1.4 Create `src/log.js` (JSON to `console.log`, nothing when `ENVIRONMENT=production`); verify with a test that replaces `console.log`.
 
-## 2. Тексти і валідація
+## 2. Texts and validation
 
-- [x] 2.1 Створити `src/messages.js`: `tooLong`, `noData`, `rateLimited`, `failure` × `uk/en/pl` (тексти з `design.md` і `.agents/propose/setup.md`), `resolveLang(lang)` з фолбеком `en`; перевірити тестом: усі 12 текстів непорожні, `de`/`undefined` → англійська.
-- [x] 2.2 Створити `src/validate.js` за вимогами `chat-answering` (Request validation, Message length limits): повертає `{status, body}` або `{question, lang}`; перевірити `test/validate.test.js` по сценаріях: порожній `content` → 400 `{error}`, остання роль не `user` → 400, `MAX_MESSAGES+1` → 400 `{reply}`, надто довгий `content` → 400 `{reply}`, невалідний `lang` — не помилка.
+- [x] 2.1 Create `src/messages.js`: `tooLong`, `noData`, `rateLimited`, `failure` × `uk/en/pl` (texts from `design.md` and `.agents/propose/setup.md`), `resolveLang(lang)` with an `en` fallback; verify with a test: all 12 texts are non-empty, `de`/`undefined` → English.
+- [x] 2.2 Create `src/validate.js` per the `chat-answering` requirements (Request validation, Message length limits): returns `{status, body}` or `{question, lang}`; verify `test/validate.test.js` by scenario: empty `content` → 400 `{error}`, last role not `user` → 400, `MAX_MESSAGES+1` → 400 `{reply}`, too long `content` → 400 `{reply}`, invalid `lang` is not an error.
 
-## 3. Ліміт викликів
+## 3. Call limit
 
-- [x] 3.1 Створити `src/rate-limit.js`: обгортка над `checkRateLimit('chat', { request })` з `@vercel/firewall` з можливістю підміни; поза Vercel (локально) — no-op; перевірити `test/rate-limit.test.js` з підробленим перевіряльником: `rateLimited: true` → ознака ліміту, `false` → пропуск, помилка перевірки не валить запит (логується, запит пропускається).
+- [x] 3.1 Create `src/rate-limit.js`: a wrapper over `checkRateLimit('chat', { request })` from `@vercel/firewall` that can be replaced; outside Vercel (locally) — no-op; verify `test/rate-limit.test.js` with a fake checker: `rateLimited: true` → limited, `false` → pass, a check failure does not break the request (logged, the request passes).
 
-## 4. Пошук і Claude
+## 4. Search and Claude
 
-- [x] 4.1 Створити `src/retrieval.js`: `search(text)` через `index.searchRecords` (`topK=VECTOR_TOP_K`, namespace з env), фільтр `score >= VECTOR_MIN_SCORE`, групування за `parent_id` з максимальним score і сортуванням (чисті функції фільтра/групування окремо); перевірити `test/retrieval.test.js` без мережі: три чанки одного `parent_id` → одна група, хіти нижче порога відсікаються, порядок за score.
-- [x] 4.2 Створити `src/claude.js`: один `messages.create` із константним `system`, блоками `search_result` і `text` з питанням, `output_config.effort` лише якщо задано; перед написанням перевірити тип `search_result` у встановленому `@anthropic-ai/sdk`; перевірити тестом з підробленим клієнтом: форма запиту (блоки, порядок, модель/ліміт токенів), відсутність `effort` при порожньому env, склеювання `text`-блоків відповіді.
+- [x] 4.1 Create `src/retrieval.js`: `search(text)` via `index.searchRecords` (`topK=VECTOR_TOP_K`, namespace from env), filter `score >= VECTOR_MIN_SCORE`, grouping by `parent_id` with the maximum score and sorting (pure filter/grouping functions kept separate); verify `test/retrieval.test.js` without the network: three chunks of one `parent_id` → one group, hits below the threshold are dropped, order by score.
+- [x] 4.2 Create `src/claude.js`: one `messages.create` with a constant `system`, `search_result` blocks and a `text` block with the question, `output_config.effort` only if set; before writing, check the `search_result` type in the installed `@anthropic-ai/sdk`; verify with a test using a fake client: request shape (blocks, order, model/token limit), no `effort` when env is empty, concatenation of the answer's `text` blocks.
 
-## 5. Маршрут і сервер
+## 5. Route and server
 
-- [x] 5.1 Створити `src/index.js` (Express app, `export default app`, без `listen`) і `src/local.js` (`express.static('public')` + `listen`): порядок ліміт → розбір тіла → валідація → пошук → (немає даних → 200 `noData`) → Claude; помилки Pinecone/Claude → 502 `{reply: failure}` з логом причини; помилка розбору JSON → 400 `{error}`; обробник помилок Express; логування етапів; перевірити інтеграційним `test/chat.test.js` (підроблені `rate-limit`/`retrieval`/`claude`) по сценаріях обох спек: 200 з відповіддю, 200 «немає даних» без виклику Claude, 400, 429 (у т.ч. невалідне тіло понад ліміт → 429), 502.
-- [x] 5.2 Ручна перевірка локально з реальними Pinecone/Claude (потрібні ключі в `frontend/.env`): `npm run seed`, `npm run dev`, `curl` питання з сіду (відповідь за змістом), питання поза темою (фіксована відмова), довге повідомлення (400); результати записати в `README.md`.
+- [x] 5.1 Create `src/index.js` (Express app, `export default app`, no `listen`) and `src/local.js` (`express.static('public')` + `listen`): order limit → body parsing → validation → search → (no data → 200 `noData`) → Claude; Pinecone/Claude errors → 502 `{reply: failure}` with the cause logged; JSON parse error → 400 `{error}`; Express error handler; stage logging; verify with the integration `test/chat.test.js` (fake `rate-limit`/`retrieval`/`claude`) by scenarios from both specs: 200 with an answer, 200 "no data" without a Claude call, 400, 429 (including an invalid body over the limit → 429), 502.
+- [x] 5.2 Manual check locally with real Pinecone/Claude (keys needed in `frontend/.env`): `npm run seed`, `npm run dev`, `curl` a question from the seed (answer matches the content), an off-topic question (fixed refusal), a long message (400); record the results in `README.md`.
 
-## 6. Фронтенд
+## 6. Frontend
 
-- [x] 6.1 Адаптувати `frontend/public/index.html` (блок налаштувань чату і `getReply`/`send`): `CHAT_API_URL = '/chat'`; запит строго `POST /chat` з тілом `{"messages":[{"role":"user","content":"<текст користувача>","lang":"<мова сторінки>"}]}` — завжди один елемент, без `history`; `lang` береться з наявної змінної `lang` сторінки; `reply` читається і при не-2xx, загальна помилка — лише коли тіло не розібрати; оновити коментар про формат запиту; перевірити в браузері (DevTools → Network): після зміни мови на `uk` тіло містить `"lang":"uk"` і один елемент `messages`, відповідь показується, 400 показує текст сервера, демо-відповіді `KB` не змінені; `grep` по `frontend/public/` не знаходить посилань на файли поза папкою.
+- [x] 6.1 Adapt `frontend/public/index.html` (the chat settings block and `getReply`/`send`): `CHAT_API_URL = '/chat'`; the request strictly `POST /chat` with the body `{"messages":[{"role":"user","content":"<user text>","lang":"<page language>"}]}` — always one element, no `history`; `lang` is taken from the page's existing `lang` variable; `reply` is read for non-2xx too, a generic error only when the body cannot be parsed; update the comment about the request format; verify in the browser (DevTools → Network): after switching the language to `uk` the body contains `"lang":"uk"` and one `messages` element, the answer is shown, a 400 shows the server text, the demo `KB` answers are unchanged; `grep` over `frontend/public/` finds no references to files outside the folder.
 
-## 7. Деплой і документація
+## 7. Deploy and documentation
 
-- [x] 7.1 Налаштувати Vercel: підключити GitHub-репозиторій, Root Directory `frontend`, Framework Preset «Other» без build-команди, Ignored Build Step = «Only build if there are changes in a folder» зі значенням `frontend` (Settings → Build and Deployment), env з `.env.example` у налаштуваннях проєкту, правило Firewall (умова `@vercel/firewall`, Rate limit ID `chat`, fixed window 600 с, 20 запитів, ключ IP); перевірити: коміт, що змінює лише файл поза `frontend/` (наприклад, у `openspec/`), не запускає новий деплой (скасований або пропущений), а коміт у `frontend/` запускає; на preview-деплої `GET /` віддає сторінку, чат відповідає, 21-й виклик за 10 хв → 429 з локалізованим `reply`, а `/src/index.js`, `/package.json`, `/.env` не віддаються.
-- [x] 7.2 Додати `frontend/README.md`: змінні середовища, `npm run seed`, `npm run dev`, `npm test`, вимога до індексу (`field_map` на `text`), кроки деплою з 7.1 (Root Directory `frontend`, правило Firewall), що Docker і CI не потрібні; оновити `CLAUDE.md` (розділ «Current state»: розкладка, команди build/test, запуск одного тесту `node --test test/<file>`); перевірити, що команди з README виконуються як написано.
+- [x] 7.1 Set up Vercel: connect the GitHub repository, Root Directory `frontend`, Framework Preset "Other" without a build command, Ignored Build Step = "Only build if there are changes in a folder" with the value `frontend` (Settings → Build and Deployment), env from `.env.example` in the project settings, a Firewall rule (`@vercel/firewall` condition, Rate limit ID `chat`, fixed window 600 s, 20 requests, key IP); verify: a commit that changes only a file outside `frontend/` (for example in `openspec/`) does not trigger a new deploy (cancelled or skipped), and a commit in `frontend/` does; on a preview deploy `GET /` serves the page, the chat answers, the 21st call within 10 min → 429 with a localized `reply`, and `/src/index.js`, `/package.json`, `/.env` are not served.
+- [x] 7.2 Add `frontend/README.md`: environment variables, `npm run seed`, `npm run dev`, `npm test`, the index requirement (`field_map` on `text`), the deploy steps from 7.1 (Root Directory `frontend`, Firewall rule), and that Docker and CI are not needed; update `CLAUDE.md` ("Current state" section: layout, build/test commands, running a single test `node --test test/<file>`); verify the README commands run as written.
 
 ## Workflow follow-up
 
-- Синхронізувати delta-специфікації в основні (`/opsx:sync`) і архівувати зміну після ревʼю.
+- Sync the delta specs into the main specs (`/opsx:sync`) and archive the change after review.

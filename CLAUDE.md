@@ -11,7 +11,7 @@ frontend/public/    static site (index.html)
 frontend/src/       Express app: index.js (default export, Vercel entry), local.js (static + listen),
                     config, log, messages, validate, rate-limit, retrieval (Pinecone), claude
 frontend/scripts/   seed-pinecone.js
-frontend/test/      node:test, no network (fakes for rate-limit/retrieval/claude)
+frontend/test/      Jest (ESM), no network (fakes for rate-limit/retrieval/claude)
 data/               faq.sample.json (seed data, outside the deploy)
 docker/             docker-compose.yml for local dev
 ```
@@ -22,7 +22,7 @@ Commands (run in `frontend/`, needs `.env` from `.env.example`):
 
 - `npm ci` — install
 - `npm run dev` — local server on :3000 (or `docker compose -f docker/docker-compose.yml up` from the repo root)
-- `npm test` — all tests; single file: `node --test test/<file>`
+- `npm test` — all tests; single file: `npm test -- test/<file>`
 - `npm run seed [-- --dry-run]` — fill Pinecone from `data/faq.sample.json`
 
 There is no lint or build step. Server code must never go under `public/` (Vercel serves it as static).

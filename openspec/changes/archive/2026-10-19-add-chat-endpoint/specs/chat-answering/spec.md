@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Відповідь на питання відвідувача про Вадима лише на основі бази знань: `POST /chat` шукає релевантні фрагменти й віддає відповідь, а за відсутності даних чи збою — фіксований текст мовою користувача.
+Answering a visitor's question about Vadym using only the knowledge base: `POST /chat` retrieves relevant fragments and returns an answer, or a fixed text in the user's language when there is no data or an upstream failure.
 
 ## ADDED Requirements
 

@@ -1,26 +1,26 @@
-zr# Tasks
+# Tasks
 
 ## 1. Config
 
-- [x] 1.1 У `frontend/src/config.js` додати `rerankModel` (`RERANK_MODEL`, порожнє = вимкнено) і `rerankMinScore` (`RERANK_MIN_SCORE`, числовий дефолт з `num`), за зразком `vectorMinScore`. Перевірка: `node --test test/config.test.js` з новими кейсами (дефолти, значення з env, порожній рядок).
-- [x] 1.2 Додати обидві змінні в `frontend/.env.example` з коментарем, що `VECTOR_MIN_SCORE` при увімкненому реранкері є грубим префільтром. Перевірка: файл містить обидва ключі й пояснення.
+- [x] 1.1 In `frontend/src/config.js` add `rerankModel` (`RERANK_MODEL`, empty = off) and `rerankMinScore` (`RERANK_MIN_SCORE`, numeric default via `num`), following `vectorMinScore`. Check: `node --test test/config.test.js` with new cases (defaults, values from env, empty string).
+- [x] 1.2 Add both variables to `frontend/.env.example` with a comment that `VECTOR_MIN_SCORE` is a coarse prefilter when the reranker is on. Check: the file contains both keys and the explanation.
 
 ## 2. Retrieval
 
-- [x] 2.1 У `createRetrieval` (`frontend/src/retrieval.js`) приймати `rerank` (функція, за замовчуванням через `pc.inference.rerank`) так само, як `index`, щоб тести працювали без мережі. Не чіпати `filterHits` і `groupByParent`.
-- [x] 2.2 Після `groupByParent(filterHits(...))` і лише коли `config.rerankModel` непорожнє та груп більше нуля: викликати rerank із `query=text`, `documents` = унікальні `answer` груп, `rankFields: ['answer']`, `topN` = кількість груп; замінити score груп на rerank-score, відфільтрувати `>= rerankMinScore`, відсортувати за ним. Без груп rerank не викликається. Повертати ту саму форму `{hits, groups}`.
-- [x] 2.3 Помилку rerank не перехоплювати в `retrieval.js`, щоб вона піднялась до наявної обробки 502. Перевірка: тест у `retrieval.test.js`, що відхилений rerank дає відхилений `search`.
-- [x] 2.4 Тести в `frontend/test/retrieval.test.js` (фейк rerank): вимкнено = rerank не викликано; група з високим dense, але низьким rerank відсікається; порядок за rerank-score; три чанки одного `parent_id` дають один документ у rerank; порожні групи не викликають rerank. Перевірка: `node --test test/retrieval.test.js`.
-- [x] 2.5 У `frontend/test/chat.test.js` додати кейс: усі групи відсіяні rerank дає 200 з текстом «немає інформації» і без виклику Claude; відхилений rerank дає 502. Перевірка: `node --test test/chat.test.js`, потім `npm test` проходить повністю.
+- [x] 2.1 In `createRetrieval` (`frontend/src/retrieval.js`) accept `rerank` (a function, by default via `pc.inference.rerank`) the same way as `index`, so tests work without the network. Do not touch `filterHits` and `groupByParent`.
+- [x] 2.2 After `groupByParent(filterHits(...))`, and only when `config.rerankModel` is non-empty and there is more than zero groups: call rerank with `query=text`, `documents` = the groups' unique `answer`s, `rankFields: ['answer']`, `topN` = number of groups; replace the group scores with the rerank score, filter `>= rerankMinScore`, sort by it. With no groups rerank is not called. Return the same `{hits, groups}` shape.
+- [x] 2.3 Do not catch the rerank error in `retrieval.js`, so it rises to the existing 502 handling. Check: a test in `retrieval.test.js` that a rejected rerank gives a rejected `search`.
+- [x] 2.4 Tests in `frontend/test/retrieval.test.js` (fake rerank): off = rerank not called; a group with a high dense but low rerank score is dropped; order by rerank score; three chunks of one `parent_id` give one document in rerank; empty groups do not call rerank. Check: `node --test test/retrieval.test.js`.
+- [x] 2.5 In `frontend/test/chat.test.js` add cases: all groups dropped by rerank gives 200 with the "no information" text and no Claude call; a rejected rerank gives 502. Check: `node --test test/chat.test.js`, then `npm test` passes completely.
 
-## 3. Калібрування
+## 3. Calibration
 
-- [x] 3.1 Перед вибором моделі звірити з поточною документацією Pinecone (скіл `context7-mcp`) список rerank-моделей, їхню підтримку uk/pl і ліміт довжини документа, і записати вибір у `design.md` (Open Questions). Перевірка: рядок у `design.md` із моделлю й обґрунтуванням.
-- [x] 3.2 Розширити off-topic вибірку в `frontend/scripts/measure-score.js` (ціль: щонайменше 60 запитів, en/uk/pl, з жартами, привітаннями, питаннями про користувачів, питаннями про інших людей). Перевірка: скрипт виводить `n=` не менше 60 для off-topic.
-- [x] 3.3 У `measure-score.js` додати режим rerank: коли `RERANK_MODEL` задано, для кожного запиту (з відкиданням власного чанка, як зараз) групувати dense-хіти, реранкувати й виводити для in-topic та off-topic розподіл rerank-score, найнижчі in-topic, найвищі off-topic, таблицю порогів і рекомендацію діапазону `RERANK_MIN_SCORE`. Dense-вивід не змінювати. Перевірка: `npm run measure-score` з `RERANK_MODEL` і без нього.
-- [x] 3.4 Додати перефразування (en/uk/pl) до дев'яти записів з найнижчим dense-score в `data/faq.sample.json`, засидити (`npm run seed`) і перемірити dense (`npm run measure-score` без `RERANK_MODEL`). Результат записаний у `design.md`. Калібрування `RERANK_MIN_SCORE` винесено з цієї зміни (див. Статус у `design.md`).
+- [x] 3.1 Before choosing a model, check the current Pinecone documentation (the `context7-mcp` skill) for the list of rerank models, their uk/pl support and the document length limit, and record the choice in `design.md` (Open Questions). Check: a line in `design.md` with the model and rationale.
+- [x] 3.2 Expand the off-topic sample in `frontend/scripts/measure-score.js` (target: at least 60 queries, en/uk/pl, with jokes, greetings, questions about users, questions about other people). Check: the script prints `n=` of at least 60 for off-topic.
+- [x] 3.3 In `measure-score.js` add a rerank mode: when `RERANK_MODEL` is set, for each query (dropping its own chunk, as now) group the dense hits, rerank, and print the rerank score distribution for in-topic and off-topic, the lowest in-topic, the highest off-topic, a threshold table and a recommended `RERANK_MIN_SCORE` range. Do not change the dense output. Check: `npm run measure-score` with and without `RERANK_MODEL`.
+- [x] 3.4 Add paraphrases (en/uk/pl) to the nine records with the lowest dense score in `data/faq.sample.json`, seed (`npm run seed`) and re-measure dense (`npm run measure-score` without `RERANK_MODEL`). The result is recorded in `design.md`. Calibrating `RERANK_MIN_SCORE` is moved out of this change (see Status in `design.md`).
 
-## 4. Системний промпт і документація
+## 4. System prompt and documentation
 
-- [x] 4.1 У `SYSTEM_PROMPT` (`frontend/src/claude.js`) додати правило: відповідати лише коли результат прямо відповідає на питання, інакше сказати, що інформації немає; тест у `frontend/test/claude.test.js`. Перевірка: `npm test` проходить, ручна перевірка на жарті/паролі.
-- [x] 4.2 Оновити `frontend/README.md` (env, роль `VECTOR_MIN_SCORE`, калібрування через `npm run measure-score`, rollback очищенням `RERANK_MODEL`) і опис pipeline в кореневому `README.md` та `CLAUDE.md`. Перевірка: описані команди виконуються як записано.
+- [x] 4.1 In `SYSTEM_PROMPT` (`frontend/src/claude.js`) add a rule: answer only when a result directly answers the question, otherwise say there is no information; a test in `frontend/test/claude.test.js`. Check: `npm test` passes, a manual check on a joke/passwords.
+- [x] 4.2 Update `frontend/README.md` (env, the role of `VECTOR_MIN_SCORE`, calibration via `npm run measure-score`, rollback by clearing `RERANK_MODEL`) and the pipeline description in the root `README.md` and `CLAUDE.md`. Check: the described commands run as written.

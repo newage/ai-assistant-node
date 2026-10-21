@@ -1,5 +1,4 @@
-import { test } from 'node:test';
-import assert from 'node:assert/strict';
+import { test, expect } from '@jest/globals';
 import { buildRequest, createClaude, SYSTEM_PROMPT } from '../src/claude.js';
 
 const config = { claudeModel: 'm', claudeMaxTokens: 99, claudeEffort: 'low' };
@@ -10,28 +9,28 @@ const groups = [
 
 test('request shape: search_result blocks then question text', () => {
   const r = buildRequest(config, 'Q?', groups);
-  assert.equal(r.model, 'm');
-  assert.equal(r.max_tokens, 99);
-  assert.equal(r.system, SYSTEM_PROMPT);
+  expect(r.model).toBe('m');
+  expect(r.max_tokens).toBe(99);
+  expect(r.system).toBe(SYSTEM_PROMPT);
   const content = r.messages[0].content;
-  assert.deepEqual(content.map((b) => b.type), ['search_result', 'search_result', 'text']);
-  assert.deepEqual(content[0].content, [{ type: 'text', text: 'AA' }]);
-  assert.equal(content[0].source, 'a');
-  assert.equal(content[2].text, 'Q?');
-  assert.deepEqual(r.output_config, { effort: 'low' });
+  expect(content.map((b) => b.type)).toStrictEqual(['search_result', 'search_result', 'text']);
+  expect(content[0].content).toStrictEqual([{ type: 'text', text: 'AA' }]);
+  expect(content[0].source).toBe('a');
+  expect(content[2].text).toBe('Q?');
+  expect(r.output_config).toStrictEqual({ effort: 'low' });
 });
 
 test('no effort when env is empty', () => {
-  assert.equal('output_config' in buildRequest({ ...config, claudeEffort: '' }, 'Q?', groups), false);
+  expect('output_config' in buildRequest({ ...config, claudeEffort: '' }, 'Q?', groups)).toBe(false);
 });
 
 test('text blocks of the response are concatenated', async () => {
   const client = { messages: { create: async () => ({ content: [{ type: 'text', text: 'Hel' }, { type: 'thinking' }, { type: 'text', text: 'lo' }] }) } };
-  assert.equal(await createClaude(config, client)('Q?', groups), 'Hello');
+  expect(await createClaude(config, client)('Q?', groups)).toBe('Hello');
 });
 
 test('system prompt refuses off-topic requests even when results are only related', () => {
-  assert.match(SYSTEM_PROMPT, /directly answers the question/);
-  assert.match(SYSTEM_PROMPT, /jokes/);
-  assert.match(SYSTEM_PROMPT, /passwords or credentials/);
+  expect(SYSTEM_PROMPT).toMatch(/directly answers the question/);
+  expect(SYSTEM_PROMPT).toMatch(/jokes/);
+  expect(SYSTEM_PROMPT).toMatch(/passwords or credentials/);
 });

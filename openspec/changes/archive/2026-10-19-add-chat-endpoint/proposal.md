@@ -2,31 +2,31 @@
 
 ## Why
 
-Сайт-візитка (`frontend/index.html`) має чат «Ask my AI assistant», але працює лише в демо-режимі (`CHAT_API_URL = null`, заготовлені відповіді). Відвідувач не може поставити реальне питання про досвід Вадима, а відповідь має спиратися лише на факти з бази знань, без вигадок моделі.
+The personal site (`frontend/index.html`) has an "Ask my AI assistant" chat, but it only works in demo mode (`CHAT_API_URL = null`, canned answers). A visitor cannot ask a real question about Vadym's experience, and the answer must rely only on facts from the knowledge base, with no invention by the model.
 
 ## What Changes
 
-- Новий Node-сервіс: один `POST /chat` (`{messages:[{role,content,lang}]}` → `{reply}`), що шукає в Pinecone (integrated embedding), відсікає хіти за `VECTOR_MIN_SCORE`, групує чанки за `parent_id` і одним викликом Claude формує відповідь лише з знайденого контексту.
-- Детерміновані фіксовані тексти (uk/en/pl; невалідний `lang` → en) для: відсутності даних (200), надто довгого повідомлення (400), перевищення ліміту (429), збою Pinecone/Claude (502).
-- Rate limit: 20 викликів за 10 хвилин на IP (правило Vercel Firewall + перевірка в коді через `@vercel/firewall`).
-- Усе деплойне лежить в одній папці `frontend/` (статика в `frontend/public/`, Node-код і залежності поруч) і викладається на Vercel (Root Directory = `frontend`, деплой із GitHub без Docker і CI). Статика й `/chat` на одному origin, CORS не потрібен.
-- Структурований `console.log` кожного етапу, коли `ENVIRONMENT != production`.
-- Адаптація `frontend/index.html` до контракту: формат тіла запиту, `lang`, показ `reply` також для не-2xx відповідей, `CHAT_API_URL = '/chat'`.
-- Скрипт сіду `scripts/seed-pinecone.js` вже існує (окрема попередня робота) — не змінюється.
+- A new Node service: a single `POST /chat` (`{messages:[{role,content,lang}]}` → `{reply}`) that searches Pinecone (integrated embedding), drops hits below `VECTOR_MIN_SCORE`, groups chunks by `parent_id`, and builds the answer with one Claude call using only the retrieved context.
+- Deterministic fixed texts (uk/en/pl; invalid `lang` → en) for: no data (200), message too long (400), limit exceeded (429), Pinecone/Claude failure (502).
+- Rate limit: 20 calls per 10 minutes per IP (Vercel Firewall rule + a check in code via `@vercel/firewall`).
+- Everything deployable lives in one `frontend/` folder (static files in `frontend/public/`, Node code and dependencies alongside) and is deployed to Vercel (Root Directory = `frontend`, deploy from GitHub without Docker or CI). Static files and `/chat` share one origin, so CORS is not needed.
+- A structured `console.log` for each stage when `ENVIRONMENT != production`.
+- Adapt `frontend/index.html` to the contract: request body format, `lang`, showing `reply` for non-2xx responses too, `CHAT_API_URL = '/chat'`.
+- The seed script `scripts/seed-pinecone.js` already exists (separate earlier work) and is not changed.
 
 ## Capabilities
 
 ### New Capabilities
-- `chat-answering`: контракт `POST /chat` — валідація, вибір останнього повідомлення, пошук у Pinecone з порогом і групуванням, відповідь Claude лише за знайденим контекстом, фіксовані відмови й помилки за мовою.
-- `chat-abuse-protection`: ліміт викликів на IP (20 за 10 хв) і відповідь 429.
+- `chat-answering`: the `POST /chat` contract — validation, picking the last message, Pinecone search with a threshold and grouping, a Claude answer based only on the retrieved context, fixed refusals and errors by language.
+- `chat-abuse-protection`: per-IP call limit (20 per 10 min) and the 429 response.
 
 ### Modified Capabilities
-<!-- немає: openspec/specs порожній -->
+<!-- none: openspec/specs is empty -->
 
 ## Impact
 
-- Новий код сервісу (Node, ESM) у `frontend/`; `package.json`, `scripts/seed-pinecone.js` і `index.html` переїжджають у `frontend/` (`index.html` → `frontend/public/`); залежності: `@pinecone-database/pinecone`, `@anthropic-ai/sdk`, `express`, `@vercel/firewall`.
-- `frontend/public/index.html` — блок налаштувань чату і `getReply`/`send`.
-- `.env.example` переїжджає в `frontend/`; у проді змінні задаються в налаштуваннях проєкту Vercel.
-- Зовнішні системи: Vercel (хостинг, Firewall), Pinecone (індекс з `field_map` на `text`, наповнений `npm run seed`), Anthropic API (витрати — обмежує rate limit).
-- Поза scope: історія діалогу, стрімінг, CORS, автентифікація, зміна даних/сіду.
+- New service code (Node, ESM) in `frontend/`; `package.json`, `scripts/seed-pinecone.js` and `index.html` move into `frontend/` (`index.html` → `frontend/public/`); dependencies: `@pinecone-database/pinecone`, `@anthropic-ai/sdk`, `express`, `@vercel/firewall`.
+- `frontend/public/index.html` — the chat settings block and `getReply`/`send`.
+- `.env.example` moves into `frontend/`; in production, variables are set in the Vercel project settings.
+- External systems: Vercel (hosting, Firewall), Pinecone (index with `field_map` on `text`, filled by `npm run seed`), Anthropic API (costs — limited by the rate limit).
+- Out of scope: dialog history, streaming, CORS, authentication, changes to data/seeding.

@@ -15,7 +15,7 @@ Reply languages: Ukrainian, English, Polish.
 | Rate limit | Vercel Firewall (`@vercel/firewall`) | 20 requests / 10 min per IP |
 | Frontend | static `index.html` (no frameworks) | personal site with a chat |
 | Hosting | Vercel (Root Directory = `frontend`) | serverless function + static files |
-| Tests | `node:test` | no network, fakes for rate-limit / retrieval / claude |
+| Tests | Jest | no network, fakes for rate-limit / retrieval / claude |
 | Local development | Docker Compose (`node:22-alpine`) | run without installing Node |
 | Change process | OpenSpec (`spec-driven`) | planning changes through specs |
 
@@ -79,7 +79,7 @@ frontend/          everything that gets deployed (Vercel Root Directory)
   src/             Express app: index, local, config, log, messages,
                    validate, rate-limit, retrieval, claude
   scripts/         seed-pinecone.js — fills the index
-  test/            node:test
+  test/            Jest
 data/              faq.sample.json — source data for seeding
 docker/            docker-compose.yml for local development
 openspec/          specs and changes (spec-driven workflow)
