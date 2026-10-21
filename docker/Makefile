@@ -1,6 +1,12 @@
 COMPOSE = docker compose -f docker-compose.yml
 
-.PHONY: up down rebuild console seed seed-dry
+.PHONY: build up down rebuild console seed seed-dry
+
+# One-time project setup: enable git hooks from .githooks, create frontend/.env if missing, build images
+build:
+	git config core.hooksPath .githooks
+	cp --update=none ../frontend/.env.example ../frontend/.env
+	$(COMPOSE) build
 
 up:
 	$(COMPOSE) up -d
