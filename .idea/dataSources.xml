@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="neondb@ep-falling-lake-b20x2a9w-pooler.c-6.eu-central-1.aws.neon.tech" uuid="ab98ccc2-3091-4155-ae0e-c92a24ea5ec6">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ep-falling-lake-b20x2a9w-pooler.c-6.eu-central-1.aws.neon.tech/neondb?channel_binding=require&amp;sslmode=require</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
